@@ -40,23 +40,31 @@ class SiteSetting extends Model
 
     public static function current(): self
     {
-        if (Schema::hasTable('site_settings')) {
-            return static::query()->first() ?? new static(static::defaults());
-        }
+        $settings = Schema::hasTable('site_settings')
+            ? static::query()->first() ?? new static(static::defaults())
+            : new static(static::defaults());
 
-        return new static(static::defaults());
+        $settings->setAttribute('site_name', config('college.name'));
+        $settings->setAttribute('site_tagline', config('college.tagline'));
+        $settings->setAttribute('site_description', config('college.description'));
+        $settings->setAttribute('admissions_popup_body', config('college.admissions_popup_body'));
+        $settings->setAttribute('logo_path', config('college.logo_path'));
+        $settings->setAttribute('favicon_path', config('college.logo_path'));
+        $settings->setAttribute('email', config('college.email'));
+
+        return $settings;
     }
 
     public static function defaults(): array
     {
         return [
-            'site_name' => 'Swat College',
-            'site_tagline' => 'of Pharmaceutical Sciences',
-            'site_description' => 'Academic pharmacy education in Swat with a focus on professional competence, laboratory skill, and healthcare service.',
-            'logo_path' => 'images/scps-logo.png',
-            'favicon_path' => 'images/scps-logo.png',
+            'site_name' => config('college.name'),
+            'site_tagline' => config('college.tagline'),
+            'site_description' => config('college.description'),
+            'logo_path' => config('college.logo_path'),
+            'favicon_path' => config('college.logo_path'),
             'phone' => '+92 946 123456',
-            'email' => 'info@scps.edu.pk',
+            'email' => config('college.email'),
             'address' => 'College Road, Swat, Khyber Pakhtunkhwa, Pakistan',
             'admissions_url' => 'https://scps.digitalcampuspro.com/admin/login',
             'facebook_url' => null,
@@ -66,7 +74,7 @@ class SiteSetting extends Model
             'admissions_popup_is_active' => true,
             'admissions_popup_eyebrow' => 'Admissions Open',
             'admissions_popup_heading' => 'Your future in pharmacy starts here.',
-            'admissions_popup_body' => 'Build the knowledge, practical skills, and confidence to make a difference in healthcare. Take the next step with Swat College of Pharmaceutical Sciences.',
+            'admissions_popup_body' => config('college.admissions_popup_body'),
             'admissions_popup_button_label' => 'Apply Now',
             'admissions_popup_button_url' => null,
             'admissions_popup_image_path' => null,
@@ -76,7 +84,17 @@ class SiteSetting extends Model
 
     public function logoUrl(): string
     {
-        return $this->assetUrl($this->logo_path ?: static::defaults()['logo_path']);
+        $path = $this->logo_path ?: static::defaults()['logo_path'];
+        $url = $this->assetUrl($path);
+        $file = str_starts_with($path, 'site-settings/')
+            ? storage_path('app/public/'.$path)
+            : public_path($path);
+
+        if (is_file($file)) {
+            $url .= (str_contains($url, '?') ? '&' : '?').'v='.filemtime($file);
+        }
+
+        return $url;
     }
 
     public function faviconUrl(): string
@@ -108,7 +126,7 @@ class SiteSetting extends Model
     private function assetUrl(?string $path): string
     {
         if (! $path) {
-            return asset('images/scps-logo.png');
+            return asset(config('college.logo_path'));
         }
 
         if (str_starts_with($path, 'http')) {

@@ -13,8 +13,8 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-white text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page bg-white text-slate-950">
+    @include('partials.site-header-modern')
 
     @php
         $bodyText = trim($post->body ?: 'Full details for this announcement will be added soon.');
@@ -35,7 +35,7 @@
                     <header class="news-story-single__header">
                         <div class="news-story-meta">
                             <span>{{ $post->category }}</span>
-                            <span>{{ optional($post->published_at)->format('F d, Y') ?: 'SCPS Update' }}</span>
+                            <span>{{ optional($post->published_at)->format('F d, Y') ?: 'College Update' }}</span>
                             <span>{{ $readMinutes }} min read</span>
                         </div>
 
@@ -107,6 +107,6 @@
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

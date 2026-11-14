@@ -11,7 +11,7 @@
 @endphp
 
 <div class="preloader" aria-hidden="true">
-    <div class="preloader__mark">SCPS</div>
+    <div class="preloader__mark">ACPS</div>
 </div>
 
 <header id="siteHeader" class="scps-tailwind-header fixed inset-x-0 top-0 z-50 transition-all duration-300">
@@ -138,7 +138,7 @@
 <div class="search-modal" aria-hidden="true">
     <button class="search-modal__close" type="button" aria-label="Close search">x</button>
     <form class="search-modal__box" method="GET" action="{{ route('search.index') }}">
-        <label for="siteSearch">Search SCPS</label>
+        <label for="siteSearch">Search ACPS</label>
         <div>
             <input id="siteSearch" name="q" type="search" placeholder="Search programs, admissions, faculty..." required>
             <button type="submit">Search</button>

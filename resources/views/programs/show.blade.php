@@ -14,8 +14,8 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-white text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page bg-white text-slate-950">
+    @include('partials.site-header-modern')
 
     <main class="program-profile campus-event-accent campus-event-accent--{{ $program->accent ?: 'sky' }}">
         <section class="program-profile-hero">
@@ -108,6 +108,6 @@
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

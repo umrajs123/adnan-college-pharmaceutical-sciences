@@ -43,7 +43,7 @@ class CampusLifeSection extends Model
         return [
             'eyebrow' => 'Campus Life',
             'heading' => 'A focused campus culture built around learning, confidence, and care.',
-            'body' => 'Life at SCPS balances disciplined academic routines with peer support, guided lab practice, events, seminars, and spaces where students feel connected to their future profession.',
+            'body' => 'Life at Adnan College balances disciplined academic routines with peer support, guided lab practice, events, seminars, and spaces where students feel connected to their future profession.',
             'image_path' => 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=85',
             'image_alt' => 'Students walking on campus',
             'image_badge' => 'Student Community',

@@ -36,7 +36,7 @@ class StudentVoice extends Model
     public function imageUrl(): string
     {
         if (! $this->image_path) {
-            return asset('images/scps-logo.png');
+            return asset(config('college.logo_path'));
         }
 
         if (str_starts_with($this->image_path, 'http')) {

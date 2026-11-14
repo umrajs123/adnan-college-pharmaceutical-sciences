@@ -13,48 +13,62 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-slate-50 text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page">
+    @include('partials.site-header-modern')
 
     <main class="leadership-detail leadership-detail--{{ $message->accent }}">
         <section class="leadership-detail__hero">
-            <div class="leadership-detail__hero-inner">
-                <div class="leadership-detail__portrait">
+            <div class="acps-container leadership-detail__hero-inner">
+                <figure class="leadership-detail__portrait">
                     <img src="{{ $message->imageUrl() }}" alt="{{ $message->role }} portrait">
-                </div>
+                    <figcaption>{{ $message->role }} <span aria-hidden="true">·</span> College leadership</figcaption>
+                </figure>
 
                 <div class="leadership-detail__intro">
                     <a href="{{ url('/') }}#leadership" class="leadership-detail__back">
                         <span aria-hidden="true">&larr;</span> Leadership Messages
                     </a>
+                    <span class="leadership-detail__eyebrow">A message from our leaders</span>
                     <span class="leadership-detail__role">{{ $message->role }}</span>
                     <h1>{{ $message->title }}</h1>
                     @if($message->subtitle)
                         <p class="leadership-detail__subtitle">{{ $message->subtitle }}</p>
                     @endif
+                    <span class="leadership-detail__institution">{{ $siteSettings->site_name }}</span>
                 </div>
             </div>
         </section>
 
         <section class="leadership-detail__content">
-            <article class="leadership-detail__message">
-                <span class="leadership-detail__label">
-                    <span aria-hidden="true"></span>
-                    A Message from the {{ $message->role }}
-                </span>
-                <div class="leadership-detail__text">{{ $message->message }}</div>
+            <div class="acps-container leadership-detail__content-inner">
+                <aside class="leadership-detail__sidebar">
+                    <span class="leadership-detail__label">Leadership perspective</span>
+                    <h2>Guided by purpose.</h2>
+                    <p>Our college community is built on thoughtful learning, professional growth, and care for others.</p>
+                    @if(! empty($message->tags))
+                        <div class="leadership-detail__tags">
+                            @foreach($message->tags as $tag)
+                                <span>{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    @endif
+                </aside>
 
-                @if(! empty($message->tags))
-                    <div class="leadership-detail__tags">
-                        @foreach($message->tags as $tag)
-                            <span>{{ $tag }}</span>
-                        @endforeach
+                <article class="leadership-detail__message">
+                    <span class="leadership-detail__message-kicker">A message from the {{ $message->role }}</span>
+                    <div class="leadership-detail__text">{{ $message->message }}</div>
+                    <div class="leadership-detail__signoff">
+                        <span aria-hidden="true"></span>
+                        <div>
+                            <strong>{{ $message->role }}</strong>
+                            <small>{{ $siteSettings->site_name }}</small>
+                        </div>
                     </div>
-                @endif
-            </article>
+                </article>
+            </div>
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

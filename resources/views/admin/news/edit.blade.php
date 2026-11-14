@@ -104,7 +104,7 @@
             <span class="admin-kicker">{{ $isCreate ? 'New Post' : 'Current Post' }}</span>
             <img src="{{ $post->imageUrl() }}" alt="{{ $post->image_alt ?: $post->title ?: 'News preview' }}">
             <small>{{ $post->category ?: 'News' }} &middot; {{ optional($post->published_at)->format('M d, Y') ?: now()->format('M d, Y') }}</small>
-            <h3>{{ $post->title ?: 'New SCPS announcement' }}</h3>
+            <h3>{{ $post->title ?: 'New college announcement' }}</h3>
             <p>{{ $post->excerpt ?: 'Add a short excerpt so the homepage card feels clear and polished.' }}</p>
             <div class="admin-form-actions">
                 <a href="{{ route('admin.news.index') }}">Cancel</a>

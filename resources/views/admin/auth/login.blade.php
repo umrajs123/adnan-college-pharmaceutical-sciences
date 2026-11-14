@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SCPS Admin Login</title>
+    <title>ACPS Admin Login</title>
     <link rel="icon" type="image/png" href="{{ $siteSettings->faviconUrl() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
         <div class="login-card__visual">
             <img src="{{ $siteSettings->logoUrl() }}" alt="{{ $siteSettings->site_name }} logo">
             <span>Website Admin</span>
-            <h1>Manage SCPS content with clarity.</h1>
+            <h1>Manage Adnan College content with clarity.</h1>
             <p>Update homepage sections, leadership messages, faculty profiles, and admissions content from one focused dashboard.</p>
         </div>
 

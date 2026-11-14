@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'SCPS Admin')</title>
+    <title>@yield('title', 'ACPS Admin')</title>
     <link rel="icon" type="image/png" href="{{ $siteSettings->faviconUrl() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,7 +127,7 @@
     <main class="admin-main">
         <header class="admin-topbar">
             <div>
-                <small>@yield('eyebrow', 'SCPS Control Room')</small>
+                <small>@yield('eyebrow', 'ACPS Control Room')</small>
                 <h1>@yield('page_title', 'Dashboard')</h1>
             </div>
             <div class="admin-topbar__actions">

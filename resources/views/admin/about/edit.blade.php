@@ -27,7 +27,7 @@
             <div class="admin-form-grid">
                 <label>
                     Eyebrow
-                    <input name="eyebrow" value="{{ old('eyebrow', $section->eyebrow) }}" placeholder="About SCPS" required>
+                    <input name="eyebrow" value="{{ old('eyebrow', $section->eyebrow) }}" placeholder="About Adnan College" required>
                     @error('eyebrow') <small class="field-error">{{ $message }}</small> @enderror
                 </label>
 
@@ -130,7 +130,7 @@
         </section>
 
         <aside class="admin-preview-card about-preview-card campus-event-accent campus-event-accent--{{ old('accent', $section->accent ?: 'sky') }}">
-            <span class="admin-kicker">{{ old('eyebrow', $section->eyebrow ?: 'About SCPS') }}</span>
+            <span class="admin-kicker">{{ old('eyebrow', $section->eyebrow ?: 'About Adnan College') }}</span>
             <img src="{{ $section->imageUrl() }}" alt="{{ $section->image_alt ?: $section->heading ?: 'About preview' }}">
             <h3>{{ old('heading', $section->heading) ?: 'A College Built for Serious Pharmacy Education' }}</h3>
             <p>{{ old('body', $section->body) ?: 'Add concise About text so the homepage section feels complete and credible.' }}</p>

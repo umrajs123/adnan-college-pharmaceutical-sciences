@@ -13,16 +13,16 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-white text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page bg-white text-slate-950">
+    @include('partials.site-header-modern')
 
     <main class="search-page">
         <section class="search-page-hero">
             <div class="container">
-                <span>Search SCPS</span>
+                <span>Search Adnan College</span>
                 <h1>Find programs, faculty, news, events, and campus facilities.</h1>
                 <form method="GET" action="{{ route('search.index') }}">
-                    <input name="q" type="search" value="{{ $query }}" placeholder="Search SCPS..." required>
+                    <input name="q" type="search" value="{{ $query }}" placeholder="Search the college..." required>
                     <button type="submit">Search</button>
                 </form>
             </div>
@@ -65,6 +65,6 @@
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

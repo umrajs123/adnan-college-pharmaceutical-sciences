@@ -13,136 +13,168 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-slate-50 text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page">
+    @include('partials.site-header-modern')
 
-    <main class="faculty-accent faculty-accent--{{ $member->accent ?: 'sky' }} min-h-screen overflow-hidden">
-        <section class="relative bg-gradient-to-b from-[#061a2f] via-[#082847] to-slate-50 pb-14 pt-32 text-white sm:pt-36 lg:pb-16 lg:pt-40">
-            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_18%,rgba(29,161,242,0.24),transparent_28%),radial-gradient(circle_at_82%_18%,rgba(45,212,191,0.15),transparent_30%)]"></div>
-            <div class="container relative grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-center">
-                <div class="relative mx-auto w-full max-w-[340px] lg:max-w-[360px]">
-                    <div class="absolute -left-6 -top-6 h-40 w-40 rounded-full bg-sky-400/20 blur-3xl"></div>
-                    <div class="relative overflow-hidden rounded-xl border border-white/12 bg-white/10 p-3 shadow-[0_24px_65px_rgba(0,0,0,0.28)] backdrop-blur">
-                        <img class="h-[390px] w-full rounded-lg object-cover object-top" src="{{ $member->imageUrl() }}" alt="{{ $member->name }}">
+    <main class="acps-public-faculty-profile">
+        <section class="acps-faculty-profile-hero">
+            <div class="acps-container">
+                <a class="acps-faculty-profile__back" href="{{ route('faculty.index') }}">
+                    <span aria-hidden="true">&larr;</span> Faculty directory
+                </a>
+                <div class="acps-faculty-profile__hero-grid">
+                    <div class="acps-faculty-profile__intro">
+                        <span class="acps-faculty-profile__eyebrow">{{ $member->department }}</span>
+                        <h1>{{ $member->name }}</h1>
+                        <p class="acps-faculty-profile__designation">{{ $member->designation }}</p>
+                        @if ($member->summary)
+                            <p class="acps-faculty-profile__summary">{{ $member->summary }}</p>
+                        @endif
+                        <div class="acps-faculty-profile__actions">
+                            @if ($member->email)
+                                <a class="acps-faculty-profile__primary-action" href="mailto:{{ $member->email }}">Email faculty <span aria-hidden="true">&rarr;</span></a>
+                            @endif
+                            <a class="acps-faculty-profile__secondary-action" href="{{ route('faculty.index') }}">Meet the faculty</a>
+                        </div>
                     </div>
-                    <div class="absolute -bottom-5 right-4 rounded-lg border border-white/10 bg-white p-4 text-slate-950 shadow-[0_18px_44px_rgba(0,0,0,0.20)]">
-                        <span class="faculty-accent-link block text-[11px] font-black uppercase tracking-[0.18em]">Department</span>
-                        <strong class="mt-1 block text-lg font-black">{{ $member->department }}</strong>
-                    </div>
-                </div>
 
-                <div>
-                    <a href="{{ route('faculty.index') }}" class="faculty-accent-hero-link mb-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-wide transition hover:!text-white">
-                        &lt;- Faculty Profiles
-                    </a>
-                    <span class="faculty-accent-badge mb-4 inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white">{{ $member->department }}</span>
-                    <h1 class="max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">{{ $member->name }}</h1>
-                    <p class="mt-4 text-base font-bold text-sky-100/90 sm:text-lg">{{ $member->designation }}</p>
-                    <p class="mt-5 max-w-3xl text-base leading-8 text-sky-50/80">{{ $member->summary }}</p>
-                    <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-                        <a href="mailto:{{ $member->email }}" class="faculty-accent-button inline-flex min-h-12 items-center justify-center rounded px-7 text-sm font-black uppercase tracking-wide !text-white transition hover:-translate-y-1">Email Faculty</a>
-                        <a href="{{ url('/') }}#faculty" class="inline-flex min-h-12 items-center justify-center rounded border border-white/20 bg-white/10 px-7 text-sm font-black uppercase tracking-wide !text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white hover:!text-slate-950">Homepage Faculty</a>
+                    <div class="acps-faculty-profile__portrait-wrap">
+                        @if ($member->image_path)
+                            <img class="acps-faculty-profile__portrait" src="{{ $member->imageUrl() }}" alt="{{ $member->name }}">
+                        @else
+                            <div class="acps-faculty-profile__portrait-placeholder">
+                                <img src="{{ $siteSettings->logoUrl() }}" alt="{{ $siteSettings->site_name }} logo">
+                                <span>Faculty portrait</span>
+                            </div>
+                        @endif
+                        <div class="acps-faculty-profile__department-card">
+                            <span>Department</span>
+                            <strong>{{ $member->department }}</strong>
+                        </div>
+                        <span class="acps-faculty-profile__portrait-caption">Faculty &amp; academic mentors</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="relative bg-slate-50 py-12 sm:py-14 lg:py-16">
-            <div class="container grid gap-7 lg:grid-cols-[1.1fr_0.9fr]">
-                <article class="rounded-xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(8,35,68,0.08)] sm:p-8">
-                    <span class="mb-3 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.20em] text-sky-500">
-                        <span class="h-0.5 w-8 bg-sky-500"></span>
-                        Profile
-                    </span>
-                    <h2 class="text-3xl font-black leading-tight text-slate-950">Academic Biography</h2>
-                    <p class="mt-5 text-base leading-8 text-slate-600">{{ $member->bio }}</p>
+        <section class="acps-faculty-profile-content">
+            <div class="acps-container acps-faculty-profile__content-grid">
+                <article class="acps-faculty-profile__biography">
+                    <span class="acps-faculty-section-label">Faculty profile</span>
+                    <h2>Academic biography</h2>
+                    @if ($member->bio)
+                        <p class="acps-faculty-profile__bio-copy">{{ $member->bio }}</p>
+                    @else
+                        <p class="acps-faculty-profile__bio-copy">This faculty member supports students through teaching, academic guidance, and a commitment to learning in pharmaceutical sciences.</p>
+                    @endif
 
-                    <div class="mt-7 grid gap-4 sm:grid-cols-2">
-                        <div class="rounded-lg bg-sky-50 p-5">
-                            <span class="text-xs font-black uppercase tracking-[0.16em] text-sky-600">Education</span>
-                            <strong class="mt-2 block text-base font-black leading-snug text-slate-950">{{ $member->education }}</strong>
-                        </div>
-                        <div class="rounded-lg bg-teal-50 p-5">
-                            <span class="text-xs font-black uppercase tracking-[0.16em] text-teal-700">Experience</span>
-                            <strong class="mt-2 block text-base font-black leading-snug text-slate-950">{{ $member->experience }}</strong>
-                        </div>
+                    <div class="acps-faculty-profile__credentials">
+                        @if ($member->education)
+                            <div>
+                                <span>Education</span>
+                                <strong>{{ $member->education }}</strong>
+                            </div>
+                        @endif
+                        @if ($member->experience)
+                            <div>
+                                <span>Experience</span>
+                                <strong>{{ $member->experience }}</strong>
+                            </div>
+                        @endif
                     </div>
                 </article>
 
-                <aside class="grid gap-5">
-                    <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(8,35,68,0.08)]">
-                        <h2 class="text-2xl font-black text-slate-950">Contact Details</h2>
-                        <div class="mt-5 grid gap-4 text-sm">
-                            <div class="rounded-lg bg-slate-50 p-4">
-                                <span class="block font-black uppercase tracking-[0.14em] text-slate-500">Email</span>
-                                <a href="mailto:{{ $member->email }}" class="faculty-accent-link mt-1 block font-bold">{{ $member->email }}</a>
-                            </div>
-                            <div class="rounded-lg bg-slate-50 p-4">
-                                <span class="block font-black uppercase tracking-[0.14em] text-slate-500">Office</span>
-                                <strong class="mt-1 block text-slate-950">{{ $member->office }}</strong>
-                            </div>
-                        </div>
-                    </div>
+                <aside class="acps-faculty-profile__sidebar">
+                    <section class="acps-faculty-profile__info-card">
+                        <span class="acps-faculty-section-label">Connect</span>
+                        <h2>Contact details</h2>
+                        @if ($member->email || $member->office)
+                            <dl>
+                                @if ($member->email)
+                                    <div>
+                                        <dt>Email</dt>
+                                        <dd><a href="mailto:{{ $member->email }}">{{ $member->email }}</a></dd>
+                                    </div>
+                                @endif
+                                @if ($member->office)
+                                    <div>
+                                        <dt>Office</dt>
+                                        <dd>{{ $member->office }}</dd>
+                                    </div>
+                                @endif
+                            </dl>
+                        @else
+                            <p>Contact details are not currently listed. Please reach out through the college faculty directory.</p>
+                        @endif
+                    </section>
 
-                    <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-[0_18px_45px_rgba(8,35,68,0.08)]">
-                        <h2 class="text-2xl font-black text-slate-950">Teaching Areas</h2>
-                        <div class="mt-5 flex flex-wrap gap-2">
-                            @foreach ($member->courses ?? [] as $course)
-                                <span class="faculty-accent-chip rounded-full px-4 py-2 text-xs font-black uppercase tracking-wide">{{ $course }}</span>
-                            @endforeach
-                        </div>
-                    </div>
+                    <section class="acps-faculty-profile__info-card acps-faculty-profile__teaching">
+                        <span class="acps-faculty-section-label">Learning</span>
+                        <h2>Teaching areas</h2>
+                        @forelse ($member->courses ?? [] as $course)
+                            <span class="acps-faculty-profile__topic">{{ $course }}</span>
+                        @empty
+                            <p>Teaching areas will be added to this profile soon.</p>
+                        @endforelse
+                    </section>
                 </aside>
             </div>
         </section>
 
-        <section class="bg-white pb-16">
-            <div class="container">
-                <div class="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-                    <div>
-                        <span class="mb-3 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.20em] text-sky-500">
-                            <span class="h-0.5 w-8 bg-sky-500"></span>
-                            Expertise
-                        </span>
-                        <h2 class="text-3xl font-black text-slate-950">Specialized Focus</h2>
-                    </div>
-                    <a href="{{ route('faculty.index') }}" class="inline-flex min-h-11 items-center justify-center rounded bg-slate-950 px-5 text-sm font-black uppercase tracking-wide !text-white transition hover:-translate-y-0.5 hover:bg-sky-500">Browse All Faculty</a>
-                </div>
-
-                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    @foreach ($member->specialties ?? [] as $specialty)
-                        <div class="group rounded-lg border border-slate-200 bg-white p-5 shadow-[0_14px_34px_rgba(8,35,68,0.08)] transition hover:-translate-y-1 hover:border-sky-200 hover:shadow-[0_24px_50px_rgba(29,161,242,0.14)]">
-                            <span class="faculty-accent-badge mb-4 grid h-11 w-11 place-items-center rounded-full text-sm font-black text-white transition group-hover:rotate-3 group-hover:scale-105">{{ $loop->iteration }}</span>
-                            <strong class="block text-base font-black leading-snug text-slate-950">{{ $specialty }}</strong>
+        @if (count($member->specialties ?? []) > 0)
+            <section class="acps-faculty-profile-focus">
+                <div class="acps-container">
+                    <div class="acps-faculty-profile__section-heading">
+                        <div>
+                            <span class="acps-faculty-section-label">Academic interests</span>
+                            <h2>Areas of expertise</h2>
                         </div>
-                    @endforeach
+                        <a href="{{ route('faculty.index') }}">Browse all faculty <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                    <div class="acps-faculty-profile__focus-grid">
+                        @foreach ($member->specialties as $specialty)
+                            <article>
+                                <span>{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                                <h3>{{ $specialty }}</h3>
+                            </article>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
-        <section class="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white py-12 text-slate-950">
-            <div class="pointer-events-none absolute -right-24 top-0 h-56 w-56 rounded-full bg-sky-100/80 blur-3xl"></div>
-            <div class="container">
-                <div class="mb-7 flex items-center justify-between gap-4">
-                    <h2 class="text-2xl font-black text-slate-950">Other Faculty Members</h2>
-                    <a href="{{ route('faculty.index') }}" class="text-sm font-black uppercase tracking-wide !text-sky-600 transition hover:!text-sky-500">View all</a>
+        <section class="acps-faculty-profile-others">
+            <div class="acps-container">
+                <div class="acps-faculty-profile__section-heading">
+                    <div>
+                        <span class="acps-faculty-section-label">Our community</span>
+                        <h2>Meet more of our faculty</h2>
+                    </div>
+                    <a href="{{ route('faculty.index') }}">View directory <span aria-hidden="true">&rarr;</span></a>
                 </div>
-                <div class="grid gap-4 md:grid-cols-3">
-                    @foreach ($faculty as $other)
+                <div class="acps-faculty-profile__colleagues">
+                    @forelse ($faculty as $other)
                         @continue($other->id === $member->id)
-                        <a href="{{ route('faculty.show', $other->slug) }}" class="faculty-accent faculty-accent--{{ $other->accent ?: 'sky' }} faculty-accent-card group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-4 !text-slate-950 shadow-[0_14px_34px_rgba(8,35,68,0.08)] transition hover:-translate-y-1">
-                            <img class="faculty-accent-avatar h-16 w-16 rounded-full object-cover object-top" src="{{ $other->imageUrl() }}" alt="{{ $other->name }}">
-                            <span>
-                                <strong class="block font-black text-slate-950">{{ $other->name }}</strong>
-                                <small class="faculty-accent-link mt-1 block font-bold uppercase tracking-[0.14em]">{{ $other->department }}</small>
+                        <a href="{{ route('faculty.show', $other->slug) }}">
+                            @if ($other->image_path)
+                                <img src="{{ $other->imageUrl() }}" alt="">
+                            @else
+                                <span class="acps-faculty-profile__colleague-mark"><img src="{{ $siteSettings->logoUrl() }}" alt=""></span>
+                            @endif
+                            <span class="acps-faculty-profile__colleague-copy">
+                                <strong>{{ $other->name }}</strong>
+                                <small>{{ $other->department }}</small>
                             </span>
+                            <span class="acps-faculty-profile__colleague-arrow" aria-hidden="true">&rarr;</span>
                         </a>
-                    @endforeach
+                    @empty
+                        <p class="acps-faculty-profile__empty">More faculty profiles will be featured here soon.</p>
+                    @endforelse
                 </div>
             </div>
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

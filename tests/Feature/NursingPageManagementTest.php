@@ -43,7 +43,7 @@ class NursingPageManagementTest extends TestCase
             ->assertOk()
             ->assertSee('Care begins with a calling.')
             ->assertSee('nursing-hero__stethoscope', false)
-            ->assertSee('The Nursing College at SCPS')
+            ->assertSee('The Nursing College at ACPS')
             ->assertSee('Knowledge with compassion')
             ->assertSee('Communication builds trust')
             ->assertSee('Safety lives in the details')

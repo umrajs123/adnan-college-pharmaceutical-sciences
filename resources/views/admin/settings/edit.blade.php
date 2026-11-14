@@ -22,7 +22,7 @@
                 <div class="admin-form-grid">
                     <label>
                         Site Name
-                        <input name="site_name" value="{{ old('site_name', $settings->site_name) }}" placeholder="Swat College" required>
+                        <input name="site_name" value="{{ old('site_name', $settings->site_name) }}" placeholder="Adnan College of Pharmaceutical Sciences" required>
                         @error('site_name') <small class="field-error">{{ $message }}</small> @enderror
                     </label>
 
@@ -40,7 +40,7 @@
 
                     <label>
                         Logo URL / Path
-                        <input name="logo_path" value="{{ old('logo_path', $settings->logo_path) }}" placeholder="images/scps-logo.png">
+                        <input name="logo_path" value="{{ old('logo_path', $settings->logo_path) }}" placeholder="images/adnan-college-mark.svg">
                         @error('logo_path') <small class="field-error">{{ $message }}</small> @enderror
                     </label>
 
@@ -52,7 +52,7 @@
 
                     <label>
                         Favicon URL / Path
-                        <input name="favicon_path" value="{{ old('favicon_path', $settings->favicon_path) }}" placeholder="images/scps-logo.png">
+                        <input name="favicon_path" value="{{ old('favicon_path', $settings->favicon_path) }}" placeholder="images/adnan-college-mark.svg">
                         @error('favicon_path') <small class="field-error">{{ $message }}</small> @enderror
                     </label>
 
@@ -82,7 +82,7 @@
 
                     <label>
                         Email
-                        <input type="email" name="email" value="{{ old('email', $settings->email) }}" placeholder="info@scps.edu.pk">
+                        <input type="email" name="email" value="{{ old('email', $settings->email) }}" placeholder="name@example.edu">
                         @error('email') <small class="field-error">{{ $message }}</small> @enderror
                     </label>
 
@@ -94,7 +94,7 @@
 
                     <label class="span-2">
                         Admissions URL
-                        <input name="admissions_url" value="{{ old('admissions_url', $settings->admissions_url) }}" placeholder="https://scps.digitalcampuspro.com/admin/login">
+                        <input name="admissions_url" value="{{ old('admissions_url', $settings->admissions_url) }}" placeholder="https://example.edu/admissions">
                         @error('admissions_url') <small class="field-error">{{ $message }}</small> @enderror
                     </label>
 

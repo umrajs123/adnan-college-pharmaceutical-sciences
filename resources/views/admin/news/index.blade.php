@@ -8,7 +8,7 @@
     <section class="admin-table-card">
         <div class="admin-card-head">
             <div>
-                <span class="admin-kicker">SCPS Updates</span>
+                <span class="admin-kicker">College Updates</span>
                 <h2>Published Stories</h2>
                 <p>Create, edit, order, and hide the news cards shown on the public website.</p>
             </div>
@@ -38,7 +38,7 @@
                 <div class="admin-empty-state">
                     <span>No news posts</span>
                     <h3>No announcements are available yet.</h3>
-                    <p>Add the first news item so it can appear in the homepage Latest From SCPS section.</p>
+                    <p>Add the first news item so it can appear in the homepage College News section.</p>
                     <a href="{{ route('admin.news.create') }}">Add News</a>
                 </div>
             @endforelse

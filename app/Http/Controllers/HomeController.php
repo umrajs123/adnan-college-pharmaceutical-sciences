@@ -20,7 +20,7 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        return view('welcome', [
+        return view('homepage', [
             'heroSlides' => $this->activeOrdered('hero_slides', HeroSlide::class, ['sort_order', 'id']),
             'leadershipMessages' => $this->activeOrdered('leadership_messages', LeadershipMessage::class, ['sort_order', 'id']),
             'campusEvents' => $this->activeOrdered('campus_events', CampusEvent::class, ['starts_at', 'sort_order'], 3),

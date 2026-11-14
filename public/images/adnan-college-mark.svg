@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-labelledby="title">
+  <title id="title">Adnan College of Pharmaceutical Sciences</title>
+  <defs>
+    <linearGradient id="surface" x1="18" y1="12" x2="164" y2="170" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#285742"/>
+      <stop offset="1" stop-color="#102e25"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="53" y1="39" x2="125" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#285742"/>
+      <stop offset="1" stop-color="#102e25"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="168" height="168" rx="45" fill="url(#surface)"/>
+  <rect x="13" y="13" width="154" height="154" rx="39" fill="none" stroke="#e4c990" stroke-opacity=".78" stroke-width="1.5"/>
+  <rect x="19" y="19" width="142" height="142" rx="34" fill="none" stroke="#fffefa" stroke-opacity=".12"/>
+  <path d="M90 25 139 43v36c0 33-19 57-49 76-30-19-49-43-49-76V43l49-18Z" fill="#f7f4eb" stroke="#d7b36a" stroke-width="2"/>
+  <path d="M90 36 128 50v29c0 27-15 47-38 62-23-15-38-35-38-62V50l38-14Z" fill="url(#shield)"/>
+  <path d="M90 47v42" stroke="#d7b36a" stroke-opacity=".62" stroke-width="1"/>
+  <text x="90" y="83" fill="#e4c990" font-family="Georgia,serif" font-size="39" font-weight="700" letter-spacing="-3" text-anchor="middle">Rx</text>
+  <path d="M59 102c12-6 22-6 31 1 9-7 19-7 31-1v20c-12-5-22-5-31 2-9-7-19-7-31-2v-20Z" fill="none" stroke="#fffefa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+  <path d="M90 103v20" stroke="#d7b36a" stroke-linecap="round" stroke-width="1.8"/>
+  <text x="90" y="140" fill="#e4c990" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing="3" text-anchor="middle">ACPS</text>
+</svg>

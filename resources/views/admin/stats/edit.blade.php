@@ -37,7 +37,7 @@
 
                 <label>
                     Icon Label
-                    <input name="icon_label" value="{{ old('icon_label', $stat->icon_label) }}" placeholder="SCPS">
+                    <input name="icon_label" value="{{ old('icon_label', $stat->icon_label) }}" placeholder="ACPS">
                     @error('icon_label') <small class="field-error">{{ $message }}</small> @enderror
                 </label>
 

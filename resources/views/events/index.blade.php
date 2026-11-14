@@ -13,8 +13,8 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-white text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page bg-white text-slate-950">
+    @include('partials.site-header-modern')
 
     <main class="event-page bg-[#f8fbff]">
         @php
@@ -26,7 +26,7 @@
             <div class="container event-board-hero__inner">
                 <div>
                     <span class="event-board-kicker">Campus Calendar</span>
-                    <h1>What’s Happening at SCPS</h1>
+                    <h1>What’s Happening at Adnan College</h1>
                     <p>Academic sessions, student gatherings, seminars, and practical learning moments curated in one clean calendar.</p>
                 </div>
                 <div class="event-board-count">
@@ -126,6 +126,6 @@
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

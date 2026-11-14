@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'SCPS Admin Dashboard')
+@section('title', 'ACPS Admin Dashboard')
 @section('eyebrow', 'Website Overview')
 @section('page_title', 'Dashboard')
 

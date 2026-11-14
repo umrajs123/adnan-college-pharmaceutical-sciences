@@ -13,17 +13,17 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
 </head>
-<body class="bg-white text-slate-950">
-    @include('partials.site-header')
+<body class="acps-public-page bg-white text-slate-950">
+    @include('partials.site-header-modern')
 
     <main class="newsroom-page">
         <section class="newsroom-hero">
             <div class="container">
                 <div class="newsroom-hero__grid">
                     <div>
-                        <span class="newsroom-kicker">SCPS Newsroom</span>
+                        <span class="newsroom-kicker">College Newsroom</span>
                         <h1 class="newsroom-title">Latest News and Announcements</h1>
-                        <p class="newsroom-intro">Follow admissions updates, academic notices, faculty activity, seminars, and campus highlights from Swat College of Pharmaceutical Sciences.</p>
+                        <p class="newsroom-intro">Follow admissions updates, academic notices, faculty activity, seminars, and campus highlights from Adnan College of Pharmaceutical Sciences.</p>
                     </div>
                     <div class="newsroom-summary">
                         <strong>{{ $posts->total() }}</strong>
@@ -75,6 +75,6 @@
         </section>
     </main>
 
-    @include('partials.site-footer')
+    @include('partials.site-footer-modern')
 </body>
 </html>

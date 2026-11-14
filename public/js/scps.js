@@ -5,7 +5,7 @@ const mobileMenu = document.querySelector('#mobileMenu');
 const navToggle = document.querySelector('.nav-toggle');
 const mobileClose = document.querySelector('.mobile-close');
 const searchModal = document.querySelector('.search-modal');
-const searchOpen = document.querySelector('[data-open-search]');
+const searchOpenButtons = [...document.querySelectorAll('[data-open-search]')];
 const searchClose = document.querySelector('.search-modal__close');
 const developerContactModal = document.querySelector('#developerContactModal');
 const developerContactTrigger = document.querySelector('[aria-controls="developerContactModal"]');
@@ -52,6 +52,7 @@ mobileMenu?.addEventListener('click', (event) => {
 });
 
 const openSearch = () => {
+    closeMenu();
     searchModal?.classList.add('is-open');
     searchModal?.setAttribute('aria-hidden', 'false');
     body.classList.add('search-open');
@@ -64,7 +65,7 @@ const closeSearch = () => {
     body.classList.remove('search-open');
 };
 
-searchOpen?.addEventListener('click', openSearch);
+searchOpenButtons.forEach((button) => button.addEventListener('click', openSearch));
 searchClose?.addEventListener('click', closeSearch);
 searchModal?.addEventListener('click', (event) => {
     if (event.target === searchModal) closeSearch();
