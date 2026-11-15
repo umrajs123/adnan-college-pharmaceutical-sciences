@@ -36,7 +36,7 @@ class LeadershipMessage extends Model
     public function imageUrl(): string
     {
         if (! $this->image_path) {
-            return asset(config('college.logo_path'));
+            return SiteSetting::current()->logoUrl();
         }
 
         if (str_starts_with($this->image_path, 'http')) {

@@ -48,8 +48,6 @@ class SiteSetting extends Model
         $settings->setAttribute('site_tagline', config('college.tagline'));
         $settings->setAttribute('site_description', config('college.description'));
         $settings->setAttribute('admissions_popup_body', config('college.admissions_popup_body'));
-        $settings->setAttribute('logo_path', config('college.logo_path'));
-        $settings->setAttribute('favicon_path', config('college.logo_path'));
         $settings->setAttribute('email', config('college.email'));
 
         return $settings;

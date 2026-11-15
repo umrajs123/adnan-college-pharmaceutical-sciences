@@ -93,7 +93,7 @@
                     </label>
 
                     <label class="span-2">
-                        Admissions URL
+                        Admissions URL <small class="field-hint">Optional — leave blank to use the site’s default admissions destination.</small>
                         <input name="admissions_url" value="{{ old('admissions_url', $settings->admissions_url) }}" placeholder="https://example.edu/admissions">
                         @error('admissions_url') <small class="field-error">{{ $message }}</small> @enderror
                     </label>

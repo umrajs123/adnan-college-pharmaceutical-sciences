@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ $siteSettings->faviconUrl() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <script>
         if (localStorage.getItem('scps-admin-theme') === 'dark') {
             document.documentElement.classList.add('admin-dark');
@@ -46,7 +46,7 @@
                 <img src="{{ $siteSettings->logoUrl() }}" alt="{{ $siteSettings->site_name }} logo">
                 <span>
                     <strong>{{ $siteSettings->site_name }}</strong>
-                    <small>Website Admin</small>
+                    <small>Content Studio</small>
                 </span>
             </a>
             <button class="admin-sidebar-toggle" type="button" data-admin-sidebar-toggle aria-label="Collapse sidebar" aria-pressed="false">
@@ -127,7 +127,7 @@
     <main class="admin-main">
         <header class="admin-topbar">
             <div>
-                <small>@yield('eyebrow', 'ACPS Control Room')</small>
+                <small>@yield('eyebrow', 'ACPS Content Studio')</small>
                 <h1>@yield('page_title', 'Dashboard')</h1>
             </div>
             <div class="admin-topbar__actions">

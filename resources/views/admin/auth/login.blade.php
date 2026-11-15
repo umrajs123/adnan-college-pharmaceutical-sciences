@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="{{ $siteSettings->faviconUrl() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}?v={{ filemtime(public_path('css/admin.css')) }}">
 </head>
 <body class="admin-login">
@@ -17,17 +17,28 @@
 
     <section class="login-card">
         <div class="login-card__visual">
-            <img src="{{ $siteSettings->logoUrl() }}" alt="{{ $siteSettings->site_name }} logo">
-            <span>Website Admin</span>
-            <h1>Manage Adnan College content with clarity.</h1>
-            <p>Update homepage sections, leadership messages, faculty profiles, and admissions content from one focused dashboard.</p>
+            <div class="login-card__brand">
+                <img src="{{ $siteSettings->logoUrl() }}" alt="{{ $siteSettings->site_name }} logo">
+                <div>
+                    <strong>{{ $siteSettings->site_name }}</strong>
+                    <small>{{ $siteSettings->site_tagline }}</small>
+                </div>
+            </div>
+            <div class="login-card__message">
+                <span>Website Administration</span>
+                <h1>Thoughtful tools for a purposeful college.</h1>
+                <p>Keep programs, people, campus stories, and admissions information clear and current from one focused workspace.</p>
+            </div>
+            <div class="login-card__features" aria-label="Admin workspace highlights">
+                <span>Content</span><span>Admissions</span><span>People</span>
+            </div>
         </div>
 
         <form class="login-card__form" method="POST" action="{{ route('admin.login.store') }}" data-login-form data-lockout-seconds="{{ $lockoutSeconds }}">
             @csrf
             <span class="admin-kicker">Secure Login</span>
-            <h2>Welcome Back</h2>
-            <p>Use your admin credentials to continue.</p>
+            <h2>Welcome back.</h2>
+            <p>Sign in to manage the Adnan College website.</p>
 
             @if($lockoutSeconds > 0)
                 <div class="login-cooldown" data-login-cooldown>
@@ -56,6 +67,7 @@
             @enderror
 
             <button type="submit" @disabled($lockoutSeconds > 0)>Enter Admin Panel</button>
+            <a class="login-card__return" href="{{ url('/') }}">&larr; Return to the college website</a>
         </form>
     </section>
 

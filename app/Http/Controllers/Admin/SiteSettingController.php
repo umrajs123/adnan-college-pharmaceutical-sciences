@@ -21,14 +21,21 @@ class SiteSettingController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $settings = SiteSetting::query()->first() ?? new SiteSetting(SiteSetting::defaults());
+
+        // An empty optional URL should clear the setting instead of being
+        // treated as an invalid URL (including whitespace-only submissions).
+        $request->merge([
+            'admissions_url' => trim((string) $request->input('admissions_url')) ?: null,
+        ]);
+
         $validated = $request->validate([
             'site_name' => ['required', 'string', 'max:120'],
             'site_tagline' => ['nullable', 'string', 'max:160'],
             'site_description' => ['nullable', 'string', 'max:500'],
             'logo_path' => ['nullable', 'string', 'max:700'],
             'favicon_path' => ['nullable', 'string', 'max:700'],
-            'logo' => ['nullable', 'image', 'max:4096'],
-            'favicon' => ['nullable', 'image', 'max:2048'],
+            'logo' => ['nullable', 'file', 'mimetypes:image/jpeg,image/png,image/gif,image/webp,image/svg+xml', 'max:4096'],
+            'favicon' => ['nullable', 'file', 'mimetypes:image/jpeg,image/png,image/gif,image/webp,image/svg+xml', 'max:2048'],
             'phone' => ['nullable', 'string', 'max:60'],
             'email' => ['nullable', 'email', 'max:160'],
             'address' => ['nullable', 'string', 'max:260'],
