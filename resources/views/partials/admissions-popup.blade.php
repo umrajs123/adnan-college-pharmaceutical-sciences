@@ -5,123 +5,136 @@
         $popupImageUrl = $settings->admissionsPopupImageUrl();
     @endphp
 
-    <div class="admissions-popup" data-admissions-popup hidden>
-        <button class="admissions-popup__backdrop" type="button" data-admissions-popup-close aria-label="Close admissions announcement"></button>
-        <section
-            class="admissions-popup__dialog"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="admissionsPopupHeading"
-            aria-describedby="admissionsPopupBody"
-            tabindex="-1"
-        >
-            <button class="admissions-popup__close" type="button" data-admissions-popup-close aria-label="Close popup">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
-            </button>
-
-            <div class="admissions-popup__content">
-                <div class="admissions-popup__topline">
-                    <div class="admissions-popup__brand">
-                        <span class="admissions-popup__brand-logo">
-                            <img src="{{ $settings->logoUrl() }}" alt="{{ $settings->site_name }} logo">
-                        </span>
-                        <span class="admissions-popup__brand-copy">
-                            <strong>{{ $settings->site_name }}</strong>
-                            <small>{{ $settings->site_tagline }}</small>
-                        </span>
+    <dialog class="acps-invitation" data-admissions-popup aria-labelledby="admissionsPopupHeading" aria-describedby="admissionsPopupBody">
+        <div class="acps-invitation__sheet">
+            <header class="acps-invitation__header">
+                <div class="acps-invitation__brand">
+                    <img src="{{ $settings->logoUrl() }}" alt="{{ $settings->site_name }} logo" width="48" height="48">
+                    <div>
+                        <strong>{{ $settings->site_name }}</strong>
+                        <small>{{ $settings->site_tagline }}</small>
                     </div>
                 </div>
-                <h2 id="admissionsPopupHeading">{{ $settings->admissions_popup_heading }}</h2>
-                <p class="admissions-popup__body" id="admissionsPopupBody">{{ $settings->admissions_popup_body }}</p>
-                <a class="admissions-popup__apply" href="{{ $popupButtonUrl }}">
-                    {{ $settings->admissions_popup_button_label }}
-                    <span aria-hidden="true">&rarr;</span>
-                </a>
-                <button class="admissions-popup__dismiss" type="button" data-admissions-popup-close>Maybe later</button>
-            </div>
+                <button class="acps-invitation__close" type="button" data-admissions-popup-close aria-label="Close admissions announcement" autofocus>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+                </button>
+            </header>
 
-            <div class="admissions-popup__art">
-                @if($popupImageUrl)
-                    <img class="admissions-popup__background" src="{{ $popupImageUrl }}" alt="">
-                @endif
-                <div class="admissions-popup__art-orbit admissions-popup__art-orbit--one" aria-hidden="true"></div>
-                <div class="admissions-popup__art-orbit admissions-popup__art-orbit--two" aria-hidden="true"></div>
-                <div class="admissions-popup__capsule" aria-hidden="true">
-                    <span></span><i></i>
+            <div class="acps-invitation__intro">
+                <div class="acps-invitation__copy">
+                    <div class="acps-invitation__status">
+                        <span>{{ $settings->admissions_popup_eyebrow ?: 'Admissions Open' }}</span>
+                        @if($settings->admissions_popup_session)
+                            <strong>{{ $settings->admissions_popup_session }}</strong>
+                        @endif
+                    </div>
+                    <h2 id="admissionsPopupHeading">{{ $settings->admissions_popup_heading }}</h2>
+                    <p id="admissionsPopupBody">{{ $settings->admissions_popup_body }}</p>
+                    <div class="acps-invitation__actions">
+                        <a class="acps-invitation__apply" href="{{ $popupButtonUrl }}">
+                            {{ $settings->admissions_popup_button_label }}
+                            <span aria-hidden="true">&nearr;</span>
+                        </a>
+                        <button class="acps-invitation__later" type="button" data-admissions-popup-close>Maybe later</button>
+                    </div>
                 </div>
-                <div class="admissions-popup__art-info">
-                    <span class="admissions-popup__eyebrow" role="status">
-                        <span aria-hidden="true"></span>
-                        <span>
-                            <strong>{{ $settings->admissions_popup_eyebrow ?: 'Admissions Open' }}</strong>
-                            <small>{{ $settings->admissions_popup_session }}</small>
-                        </span>
-                    </span>
-                    @if(($admissionsPopupPrograms ?? collect())->isNotEmpty())
-                        <section class="admissions-popup__programs" aria-labelledby="admissionsPopupProgramsHeading">
-                            <h3 id="admissionsPopupProgramsHeading">Programs open for admission</h3>
-                            <div class="admissions-popup__program-list">
-                                @foreach($admissionsPopupPrograms as $program)
-                                    <a class="admissions-popup__program" href="{{ $program->publicUrl() }}">
-                                        <span>{{ $program->icon_label ?: 'Rx' }}</span>
-                                        <strong>{{ $program->title }}</strong>
-                                        <i aria-hidden="true">&rarr;</i>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </section>
+                <aside class="acps-invitation__visual">
+                    @if($popupImageUrl)
+                        <img src="{{ $popupImageUrl }}" alt="" class="acps-invitation__image">
                     @endif
-                    <div class="admissions-popup__art-copy">
-                        <span class="admissions-popup__art-line" aria-hidden="true"></span>
-                        <strong>A future<br>in healthcare.</strong>
+                    <div class="acps-invitation__visual-copy">
+                        <span class="acps-invitation__seal" aria-hidden="true">Rx</span>
+                        <strong>A future<br> in healthcare.</strong>
                         <small>Knowledge that makes a difference</small>
                     </div>
-                </div>
+                </aside>
             </div>
-        </section>
-    </div>
+
+            @if(($admissionsPopupPrograms ?? collect())->isNotEmpty())
+                <section class="acps-invitation__programs" aria-labelledby="admissionsPopupProgramsHeading">
+                    <h3 id="admissionsPopupProgramsHeading">Programs open for admission</h3>
+                    <div class="acps-invitation__program-list">
+                        @foreach($admissionsPopupPrograms as $program)
+                            <a class="acps-invitation__program" href="{{ $program->publicUrl() }}">
+                                <span class="acps-invitation__program-icon">{{ $program->icon_label ?: 'Rx' }}</span>
+                                <strong>{{ $program->title }}</strong>
+                                <span class="acps-invitation__arrow" aria-hidden="true">&nearr;</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
+        </div>
+    </dialog>
 
     <script>
         (() => {
             const popup = document.querySelector('[data-admissions-popup]');
             if (!popup || window.location.hash) return;
 
-            const dialog = popup.querySelector('[role="dialog"]');
-            const closeButtons = popup.querySelectorAll('[data-admissions-popup-close]');
             const previouslyFocused = document.activeElement;
-            const dismiss = () => {
-                popup.hidden = true;
-                document.body.classList.remove('admissions-popup-open');
-                previouslyFocused?.focus?.();
-            };
-
-            popup.hidden = false;
-            document.body.classList.add('admissions-popup-open');
-            dialog.focus();
-
-            closeButtons.forEach((button) => button.addEventListener('click', dismiss));
-            document.addEventListener('keydown', (event) => {
-                if (popup.hidden) return;
-
-                if (event.key === 'Escape') {
-                    dismiss();
-                    return;
-                }
-
+            const dismiss = () => popup.close();
+            popup.addEventListener('close', () => {
+                document.documentElement.classList.remove('acps-invitation-open');
+                previouslyFocused?.focus?.({ preventScroll: true });
+            });
+            popup.querySelectorAll('[data-admissions-popup-close]').forEach(button => {
+                button.addEventListener('click', dismiss);
+            });
+            // The native dialog keeps background content inert and supports Escape.
+            popup.addEventListener('click', event => {
+                if (event.target === popup) dismiss();
+            });
+            popup.querySelectorAll('a[href]').forEach(link => {
+                link.addEventListener('click', () => {
+                    const destination = new URL(link.href, window.location.href);
+                    if (destination.origin === location.origin && destination.pathname === location.pathname && destination.hash) dismiss();
+                });
+            });
+            popup.addEventListener('keydown', event => {
                 if (event.key !== 'Tab') return;
-
-                const focusable = [...popup.querySelectorAll('a[href], button:not(:disabled)')];
-                const first = focusable[0];
-                const last = focusable[focusable.length - 1];
-
-                if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+                const controls = [...popup.querySelectorAll('a[href], button:not(:disabled)')];
+                const first = controls[0];
+                const last = controls[controls.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
                     event.preventDefault();
                     last.focus();
-                } else if (! event.shiftKey && (document.activeElement === last || document.activeElement === dialog)) {
+                } else if (!event.shiftKey && document.activeElement === last) {
                     event.preventDefault();
                     first.focus();
                 }
             });
+            // Fit the whole card on unusually short screens without a scroll area.
+            // Compact CSS handles normal phone/tablet layouts; scaling is a last resort.
+            const sheet = popup.querySelector('.acps-invitation__sheet');
+            const fitToViewport = () => {
+                if (!popup.open) return;
+                const viewport = window.visualViewport;
+                const width = viewport?.width ?? window.innerWidth;
+                const height = viewport?.height ?? window.innerHeight;
+                const gutter = width <= 700 ? 24 : 48;
+                const cardWidth = Math.min(940, width - gutter);
+                sheet.style.width = `${cardWidth - 2}px`;
+                sheet.style.transform = 'none';
+                const cardHeight = sheet.offsetHeight;
+                const scale = Math.min(1, (height - gutter - 2) / cardHeight);
+                sheet.style.transformOrigin = 'top left';
+                sheet.style.transform = `scale(${scale})`;
+                popup.style.width = `${(cardWidth - 2) * scale + 2}px`;
+                popup.style.height = `${cardHeight * scale + 2}px`;
+            };
+            let fitFrame;
+            const scheduleFit = () => {
+                cancelAnimationFrame(fitFrame);
+                fitFrame = requestAnimationFrame(fitToViewport);
+            };
+            new ResizeObserver(scheduleFit).observe(sheet);
+            window.addEventListener('resize', scheduleFit);
+            window.visualViewport?.addEventListener('resize', scheduleFit);
+            document.fonts?.ready.then(scheduleFit);
+            popup.showModal();
+            fitToViewport();
+            document.documentElement.classList.add('acps-invitation-open');
         })();
     </script>
 @endif

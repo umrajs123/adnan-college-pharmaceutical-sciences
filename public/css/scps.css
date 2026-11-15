@@ -14001,3 +14001,102 @@ body.acps-public-page {
         display: none;
     }
 }
+
+/* Program pages use the in-flow sticky header, so no fixed-header offset is needed. */
+.acps-public-page .program-profile-hero { padding-top: 16px; }
+@media (max-width: 640px) {
+    .acps-public-page .program-profile-hero { padding-top: 12px; }
+}
+
+/* A compact healthcare badge complements the Nursing navigation link. */
+.acps-nav .nursing-nav-link { display: inline-flex; align-items: center; gap: 6px; }
+.acps-nav .nursing-nav-indicator {
+    width: 23px;
+    height: 23px;
+    flex: 0 0 23px;
+    margin-left: 0;
+    border: 1px solid #d3ddca;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f5f5e9, #e4eddf);
+    color: #37634b;
+    box-shadow: inset 0 1px 0 #ffffffcc, 0 2px 5px #173d310c;
+    transition: background .2s, color .2s, border-color .2s;
+}
+.acps-nav .nursing-nav-indicator svg { display: block; width: 15px; height: 15px; }
+.acps-nav .nursing-nav-link:is(:hover, :focus-visible, [aria-current="page"]) .nursing-nav-indicator {
+    background: #173d31;
+    color: #e8ce98;
+    border-color: #173d31;
+}
+@media (prefers-reduced-motion: reduce) {
+    .acps-nav .nursing-nav-indicator { transition: none; }
+}
+.acps-public-page .program-profile-breadcrumb { margin-bottom: 14px; }
+/* A polished healthcare cross, paired with the site's forest and gold palette. */
+.acps-nav .nursing-nav-indicator {
+    width: 25px;
+    height: 25px;
+    flex-basis: 25px;
+    border-radius: 9px;
+    border-color: #d8c9a7;
+    background: linear-gradient(145deg, #fffdf5, #e6edde);
+    color: #27573e;
+    box-shadow: inset 0 1px 0 #fff, 0 2px 6px #173d3112;
+}
+.acps-nav .nursing-nav-link:is(:hover, :focus-visible, [aria-current="page"]) .nursing-nav-indicator {
+    border-color: #c9a363;
+    box-shadow: 0 0 0 3px #c9a36320;
+}
+/* Red healthcare cross, with a quiet background and consistent hover treatment. */
+.acps-nav .nursing-nav-indicator {
+    color: #d42b39;
+    border: 1px solid #f0cdd0;
+    background: #fff5f5;
+    box-shadow: inset 0 1px 0 #fff, 0 2px 5px #b3233210;
+}
+.acps-nav .nursing-nav-link:is(:hover, :focus-visible, [aria-current="page"]) .nursing-nav-indicator {
+    color: #bd1828;
+    background: #ffe7e9;
+    border-color: #e9a2aa;
+    box-shadow: 0 0 0 3px #d42b3910;
+}
+
+/* A balanced, compact program introduction that fits typical laptop viewports. */
+.acps-public-page .program-profile-hero { padding-bottom: 22px; }
+.acps-public-page .program-profile-hero__panel {
+    padding: 26px 30px;
+    gap: 30px;
+    border-radius: 22px;
+    box-shadow: 0 16px 44px #173d3110;
+}
+.acps-public-page .program-profile-hero__copy { padding-left: 12px; }
+.acps-public-page .program-profile-kicker { min-height: 28px; font-size: 10px; }
+.acps-public-page .program-profile-hero h1 { margin-top: 14px; font-size: clamp(30px, 3vw, 42px); }
+.acps-public-page .program-profile-hero p { margin-top: 12px; font-size: 15px; line-height: 1.65; }
+.acps-public-page .program-profile-actions { margin-top: 20px; gap: 10px; }
+.acps-public-page .program-profile-actions a { min-height: 44px; padding-inline: 18px; border-radius: 10px; font-size: 11px; }
+.acps-public-page .program-profile-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: center;
+    gap: 16px 12px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px #173d310a;
+}
+.acps-public-page .program-profile-card__icon { width: 48px; height: 48px; border-radius: 13px; font-size: 18px; box-shadow: none; }
+.acps-public-page .program-profile-card strong { margin-top: 4px; font-size: 21px; }
+.acps-public-page .program-profile-card small { font-size: 9px; }
+.acps-public-page .program-profile-card dl { grid-column: 1 / -1; gap: 7px; }
+.acps-public-page .program-profile-card dl div { padding: 9px 12px; border-radius: 9px; }
+.acps-public-page .program-profile-card dt { margin-bottom: 2px; font-size: 9px; }
+.acps-public-page .program-profile-card dd { font-size: 13px; line-height: 1.45; }
+.acps-public-page .program-profile-body { padding-top: 12px; }
+@media (min-width: 1000px) {
+    .acps-public-page .program-profile-hero__panel { grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); }
+}
+@media (max-width: 640px) {
+    .acps-public-page .program-profile-hero__panel { padding: 20px; gap: 22px; border-radius: 18px; }
+    .acps-public-page .program-profile-hero__copy { padding-left: 0; }
+    .acps-public-page .program-profile-hero__panel::before { display: none; }
+    .acps-public-page .program-profile-card { padding: 16px; }
+}

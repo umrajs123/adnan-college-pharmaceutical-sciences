@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{ asset('css/scps.css') }}?v={{ filemtime(public_path('css/scps.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/admissions-invitation.css') }}?v={{ filemtime(public_path('css/admissions-invitation.css')) }}">
 </head>
 <body class="acps-site acps-public-page">
     @include('partials.site-header-modern')

@@ -26,7 +26,7 @@
                 <li><a href="{{ $homeUrl }}#about">About</a></li>
                 <li><a href="{{ $homeUrl }}#programs">Programs</a></li>
                 <li><a href="{{ $homeUrl }}#campus">Campus life</a></li>
-                <li><a href="{{ route('nursing.index') }}" class="nursing-nav-link" @if($isNursing) aria-current="page" @endif>Nursing <span class="nursing-nav-indicator" aria-hidden="true">+</span></a></li>
+                <li><a href="{{ route('nursing.index') }}" class="nursing-nav-link" @if($isNursing) aria-current="page" @endif>Nursing <span class="nursing-nav-indicator" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 5v10M5 10h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></a></li>
                 <li><a href="{{ route('faculty.index') }}">Faculty</a></li>
                 <li><a href="{{ route('news.index') }}">News</a></li>
             </ul>
