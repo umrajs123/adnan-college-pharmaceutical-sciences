@@ -97,7 +97,17 @@ class SiteSetting extends Model
 
     public function faviconUrl(): string
     {
-        return $this->assetUrl($this->favicon_path ?: $this->logo_path ?: static::defaults()['favicon_path']);
+        $path = $this->favicon_path ?: $this->logo_path ?: static::defaults()['favicon_path'];
+        $url = $this->assetUrl($path);
+        $file = str_starts_with($path, 'site-settings/')
+            ? storage_path('app/public/'.$path)
+            : public_path($path);
+
+        if (is_file($file)) {
+            $url .= (str_contains($url, '?') ? '&' : '?').'v='.filemtime($file);
+        }
+
+        return $url;
     }
 
     public function phoneHref(): ?string

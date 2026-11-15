@@ -14100,3 +14100,29 @@ body.acps-public-page {
     .acps-public-page .program-profile-hero__panel::before { display: none; }
     .acps-public-page .program-profile-card { padding: 16px; }
 }
+
+/* Keep the Nursing hero fully visible in a standard laptop viewport. */
+@media (min-width: 901px) {
+    .acps-public-page .acps-nursing-hero { padding: 18px 0 40px; }
+    .acps-public-page .acps-nursing-breadcrumb { margin-bottom: 18px; }
+    .acps-public-page .acps-nursing-hero__grid { gap: clamp(28px, 4vw, 58px); }
+    .acps-public-page .acps-nursing-hero__copy h1 { margin: 14px 0 12px; font-size: clamp(38px, 4.5vw, 58px); }
+    .acps-public-page .acps-nursing-hero__copy > p { font-size: 13px; line-height: 1.65; }
+    .acps-public-page .acps-nursing-actions { margin-top: 18px; }
+    .acps-public-page .acps-nursing-hero__assurance { margin-top: 18px; padding-top: 12px; }
+    .acps-public-page .acps-nursing-hero__visual { min-height: 360px; }
+    .acps-public-page .acps-nursing-hero__visual > img { height: 340px; }
+}
+
+/* Bring the Newsroom introduction closer to the site header. */
+.acps-public-page .newsroom-hero {
+    padding-top: 72px;
+    padding-bottom: 34px;
+}
+
+@media (max-width: 700px) {
+    .acps-public-page .newsroom-hero {
+        padding-top: 38px;
+        padding-bottom: 26px;
+    }
+}

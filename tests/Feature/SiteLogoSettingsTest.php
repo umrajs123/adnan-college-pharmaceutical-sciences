@@ -38,6 +38,7 @@ class SiteLogoSettingsTest extends TestCase
 
         $savedLogo = SiteSetting::query()->firstOrFail()->logo_path;
         $this->assertStringStartsWith('site-settings/', $savedLogo);
+        $this->assertSame($savedLogo, SiteSetting::query()->firstOrFail()->favicon_path);
         Storage::disk('public')->assertExists($savedLogo);
 
         $logoUrl = asset('storage/'.$savedLogo);

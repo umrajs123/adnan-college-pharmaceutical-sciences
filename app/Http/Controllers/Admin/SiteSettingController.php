@@ -49,6 +49,13 @@ class SiteSettingController extends Controller
         if ($request->hasFile('logo')) {
             $this->deleteStoredFile($settings->logo_path);
             $validated['logo_path'] = $request->file('logo')->store('site-settings', 'public');
+
+            // Keep the browser title-bar icon in sync with the site logo unless
+            // the administrator is uploading a separate favicon in this request.
+            if (! $request->hasFile('favicon')) {
+                $this->deleteStoredFile($settings->favicon_path);
+                $validated['favicon_path'] = $validated['logo_path'];
+            }
         }
 
         if ($request->hasFile('favicon')) {
