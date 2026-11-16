@@ -3899,6 +3899,32 @@ h2 {
     }
 }
 
+/* Final leadership profile sizing overrides. */
+@media (min-width: 901px) {
+    .acps-public-page .leadership-detail__hero { padding: 28px 0 48px !important; }
+    .acps-public-page .leadership-detail__portrait { width: min(100%, 270px) !important; padding: 8px; }
+    .acps-public-page .leadership-detail__portrait img { height: 270px !important; }
+    .acps-public-page .leadership-detail__back { margin-bottom: 15px; }
+    .acps-public-page .leadership-detail__intro h1 { font-size: clamp(35px, 4.4vw, 56px) !important; }
+    .acps-public-page .leadership-detail__subtitle { margin-top: 12px; line-height: 1.65; }
+    .acps-public-page .leadership-detail__content { padding: 48px 0 64px !important; }
+}
+
+/* Compact leadership profiles while retaining the editorial presentation. */
+@media (min-width: 901px) {
+    .acps-public-page .leadership-detail__hero { padding: 28px 0 48px; }
+    .acps-public-page .leadership-detail__hero-inner { gap: clamp(30px, 5vw, 72px); }
+    .acps-public-page .leadership-detail__portrait { width: min(100%, 270px); padding: 8px; }
+    .acps-public-page .leadership-detail__portrait img { height: 270px; }
+    .acps-public-page .leadership-detail__back { margin-bottom: 15px; }
+    .acps-public-page .leadership-detail__eyebrow { margin-bottom: 8px; }
+    .acps-public-page .leadership-detail__role { margin-bottom: 10px; padding: 6px 10px; }
+    .acps-public-page .leadership-detail__intro h1 { font-size: clamp(35px, 4.4vw, 56px); }
+    .acps-public-page .leadership-detail__subtitle { margin-top: 12px; line-height: 1.65; }
+    .acps-public-page .leadership-detail__institution { margin-top: 20px; padding-top: 11px; }
+    .acps-public-page .leadership-detail__content { padding: 48px 0 64px; }
+}
+
 .news-story {
     min-height: 100vh;
     background:
@@ -9902,6 +9928,45 @@ body.acps-public-page {
     box-shadow: 0 18px 48px rgba(23, 61, 49, .08);
 }
 
+.acps-nursing-accreditation {
+    display: grid;
+    grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+    gap: 28px 48px;
+    margin: clamp(42px, 6vw, 72px) 0;
+    border: 1px solid rgba(201, 163, 99, .32);
+    border-radius: 24px;
+    background: linear-gradient(135deg, #173d31, #285742);
+    padding: clamp(26px, 4vw, 44px);
+    color: #fffefa;
+}
+.acps-nursing-accreditation__intro h2 { max-width: 360px; margin: 10px 0 0; color: #fffefa; font: 600 clamp(25px, 3vw, 38px)/1.1 "Playfair Display", Georgia, serif; letter-spacing: -.03em; }
+.acps-nursing-accreditation__intro > p { max-width: 360px; margin: 16px 0 0; color: rgba(255, 254, 250, .7); font-size: 12px; line-height: 1.7; }
+.acps-nursing-accreditation__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+.acps-nursing-accreditation__card { border: 1px solid rgba(255, 254, 250, .14); border-radius: 15px; background: rgba(255, 254, 250, .08); padding: 16px; }
+.acps-nursing-accreditation__icon { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; background: #e4c990; color: #173d31; font-size: 13px; font-weight: 900; }
+.acps-nursing-accreditation__card h3 { margin: 18px 0 8px; color: #fffefa; font: 800 12px/1.35 Manrope, sans-serif; }
+.acps-nursing-accreditation__card p { margin: 0; color: rgba(255, 254, 250, .68); font-size: 10px; line-height: 1.65; }
+.acps-nursing-accreditation__note { grid-column: 1 / -1; margin: 0; color: rgba(255, 254, 250, .5); font-size: 9px; line-height: 1.6; }
+@media (max-width: 900px) { .acps-nursing-accreditation { grid-template-columns: 1fr; } .acps-nursing-accreditation__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .acps-nursing-accreditation { gap: 22px; margin: 34px 0; padding: 22px; } .acps-nursing-accreditation__cards { grid-template-columns: 1fr; } }
+
+.acps-home-accreditation { background: #edf0e9; padding: clamp(42px, 6vw, 72px) 0; }
+.acps-home-accreditation__inner { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); gap: 28px 48px; align-items: center; }
+.acps-home-accreditation__intro h2 { max-width: 390px; margin: 10px 0 0; color: #173d31; font: 600 clamp(25px, 3vw, 38px)/1.1 "Playfair Display", Georgia, serif; letter-spacing: -.03em; }
+.acps-home-accreditation__intro p { max-width: 390px; margin: 16px 0 0; color: #68766d; font-size: 12px; line-height: 1.7; }
+.acps-home-accreditation__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.acps-home-accreditation__cards article { min-height: 172px; border: 1px solid rgba(23, 61, 49, .1); border-radius: 16px; background: #fffefa; padding: 16px; box-shadow: 0 12px 28px rgba(23, 61, 49, .06); }
+.acps-home-accreditation__cards article > span { display: grid; width: 58px; height: 58px; place-items: center; border: 1px solid rgba(201, 163, 99, .45); border-radius: 15px; background: #fffefa; color: #173d31; overflow: hidden; }
+.acps-home-accreditation__cards article > span svg { width: 25px; height: 25px; }
+.acps-home-accreditation__cards .acps-home-accreditation__logo img { width: 44px; height: 44px; object-fit: contain; }
+.acps-home-accreditation__logo { position: relative; }
+.acps-home-accreditation__badge { position: absolute; right: -7px; bottom: -5px; display: grid; width: 22px; height: 22px; place-items: center; border: 2px solid #fffefa; border-radius: 999px; background: #173d31; color: #e4c990; }
+.acps-home-accreditation__badge svg, .acps-home-accreditation__badge img { width: 13px; height: 13px; object-fit: contain; }
+.acps-home-accreditation__cards h3 { margin: 17px 0 8px; color: #173d31; font: 800 12px/1.35 Manrope, sans-serif; }
+.acps-home-accreditation__cards p { margin: 0; color: #68766d; font-size: 10px; line-height: 1.65; }
+@media (max-width: 900px) { .acps-home-accreditation__inner { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .acps-home-accreditation { padding: 38px 0; } .acps-home-accreditation__cards { grid-template-columns: 1fr; } .acps-home-accreditation__cards article { min-height: 0; } }
+
 .acps-public-page .search-page {
     background:
         radial-gradient(circle at 12% 18%, rgba(201, 163, 99, .12), transparent 34%),
@@ -14125,4 +14190,13 @@ body.acps-public-page {
         padding-top: 38px;
         padding-bottom: 26px;
     }
+}
+
+/* Final leadership profile sizing overrides. */
+@media (min-width: 901px) {
+    .acps-public-page .leadership-detail__hero { padding: 28px 0 48px !important; }
+    .acps-public-page .leadership-detail__portrait { width: min(100%, 270px) !important; padding: 8px; }
+    .acps-public-page .leadership-detail__portrait img { height: 270px !important; }
+    .acps-public-page .leadership-detail__intro h1 { font-size: clamp(35px, 4.4vw, 56px) !important; }
+    .acps-public-page .leadership-detail__content { padding: 48px 0 64px !important; }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AboutSectionController;
+use App\Http\Controllers\Admin\AccreditationController;
+use App\Http\Controllers\Admin\AccreditationItemController;
 use App\Http\Controllers\Admin\AcademicFacilityController;
 use App\Http\Controllers\Admin\AcademicProgramController;
 use App\Http\Controllers\Admin\AdmissionsPopupController;
@@ -146,6 +148,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/about/{section}/edit', [AboutSectionController::class, 'edit'])->whereNumber('section')->name('about.edit');
     Route::put('/about/{section}', [AboutSectionController::class, 'update'])->whereNumber('section')->name('about.update');
     Route::delete('/about/{section}', [AboutSectionController::class, 'destroy'])->whereNumber('section')->name('about.destroy');
+
+    // Accreditation & Recognition: homepage trust and verification content.
+    Route::get('/accreditation', [AccreditationItemController::class, 'index'])->name('accreditation.index');
+    Route::get('/accreditation/settings', [AccreditationController::class, 'edit'])->name('accreditation.edit');
+    Route::put('/accreditation/settings', [AccreditationController::class, 'update'])->name('accreditation.update');
+    Route::get('/accreditation/items/create', [AccreditationItemController::class, 'create'])->name('accreditation.create');
+    Route::post('/accreditation/items', [AccreditationItemController::class, 'store'])->name('accreditation.store');
+    Route::get('/accreditation/items/{item}/edit', [AccreditationItemController::class, 'edit'])->name('accreditation.item.edit');
+    Route::put('/accreditation/items/{item}', [AccreditationItemController::class, 'update'])->name('accreditation.item.update');
+    Route::delete('/accreditation/items/{item}', [AccreditationItemController::class, 'destroy'])->name('accreditation.item.destroy');
 
     // 12. Campus Life: student experience content block.
     Route::get('/campus-life', [CampusLifeSectionController::class, 'edit'])->name('campus-life.edit');

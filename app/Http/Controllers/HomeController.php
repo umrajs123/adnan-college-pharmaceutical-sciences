@@ -13,6 +13,8 @@ use App\Models\LeadershipMessage;
 use App\Models\NewsPost;
 use App\Models\StatCounter;
 use App\Models\StudentVoice;
+use App\Models\NursingPageSection;
+use App\Models\AccreditationItem;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
@@ -36,6 +38,13 @@ class HomeController extends Controller
                 ? AboutSection::active()->orderBy('sort_order')->orderBy('id')->first()
                 : null,
             'campusLifeSection' => CampusLifeSection::current(),
+            'accreditationSection' => Schema::hasTable('nursing_page_sections')
+                ? NursingPageSection::active()->where('section_type', 'accreditation')->first()
+                : null,
+            'accreditationItems' => Schema::hasTable('accreditation_items') ? AccreditationItem::active()->orderBy('sort_order')->orderBy('id')->get() : collect(),
+            'accreditationSection' => Schema::hasTable('nursing_page_sections')
+                ? NursingPageSection::active()->where('section_type', 'accreditation')->first()
+                : null,
         ]);
     }
 

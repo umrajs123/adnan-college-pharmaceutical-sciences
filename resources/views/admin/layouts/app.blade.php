@@ -33,6 +33,7 @@
             ['label' => 'Student Voices', 'hint' => 'Homepage testimonial slider', 'url' => route('admin.student-voices.index'), 'code' => 'SV'],
             ['label' => 'Facilities', 'hint' => 'Labs and academic facilities', 'url' => route('admin.facilities.index'), 'code' => 'LB'],
             ['label' => 'About', 'hint' => 'Homepage about section', 'url' => route('admin.about.index'), 'code' => 'AB'],
+            ['label' => 'Accreditation & Recognition', 'hint' => 'Homepage recognition and affiliation details', 'url' => route('admin.accreditation.index'), 'code' => 'AR'],
             ['label' => 'Campus Life', 'hint' => 'Student experience homepage block', 'url' => route('admin.campus-life.edit'), 'code' => 'CL'],
             ['label' => 'Admissions Popup', 'hint' => 'Admissions announcement and apply button', 'url' => route('admin.admissions-popup.edit'), 'code' => 'AP'],
             ['label' => 'Site Settings', 'hint' => 'Logo, contact info, admissions link', 'url' => route('admin.settings.edit'), 'code' => 'SS'],
@@ -105,20 +106,24 @@
                 <span>12</span>
                 About
             </a>
-            <a class="{{ request()->routeIs('admin.campus-life.*') ? 'active' : '' }}" href="{{ route('admin.campus-life.edit') }}">
+            <a class="{{ request()->routeIs('admin.accreditation.*') ? 'active' : '' }}" href="{{ route('admin.accreditation.index') }}">
                 <span>13</span>
+                Accreditation &amp; Recognition
+            </a>
+            <a class="{{ request()->routeIs('admin.campus-life.*') ? 'active' : '' }}" href="{{ route('admin.campus-life.edit') }}">
+                <span>14</span>
                 Campus Life
             </a>
             <a class="{{ request()->routeIs('admin.admissions-popup.*') ? 'active' : '' }}" href="{{ route('admin.admissions-popup.edit') }}">
-                <span>14</span>
+                <span>15</span>
                 Admissions Popup
             </a>
             <a class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}" href="{{ route('admin.settings.edit') }}">
-                <span>15</span>
+                <span>16</span>
                 Site Settings
             </a>
             <a class="{{ request()->routeIs('admin.security.*') ? 'active' : '' }}" href="{{ route('admin.security.edit') }}">
-                <span>16</span>
+                <span>17</span>
                 Security
             </a>
         </nav>

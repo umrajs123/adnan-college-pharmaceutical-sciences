@@ -112,6 +112,34 @@
             </div>
         </section>
 
+        @if($accreditationSection)
+            <section class="acps-home-accreditation" aria-labelledby="home-accreditation-heading">
+                <div class="acps-container acps-home-accreditation__inner">
+                    <div class="acps-home-accreditation__intro"><span class="acps-eyebrow">{{ \App\Support\CollegeBrand::copy($accreditationSection->eyebrow ?: 'Accreditation & Recognition') }}</span><h2 id="home-accreditation-heading">{{ \App\Support\CollegeBrand::copy($accreditationSection->title) }}</h2><p>We believe in transparent education pathways. Review the recognition, affiliation, and registration details that help families make informed decisions.</p></div>
+                    <div class="acps-home-accreditation__cards">
+                        @foreach($accreditationItems as $item)
+                            <article>
+                                <span class="acps-home-accreditation__logo"><img src="{{ $item->logoUrl() ?: asset('images/logo-pnmc.png') }}" alt=""><b class="acps-home-accreditation__badge" aria-hidden="true">
+                                    @if($item->iconUrl())<img src="{{ $item->iconUrl() }}" alt="">@else<svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 19 6v5.3c0 4.2-2.8 7.6-7 9.2-4.2-1.6-7-5-7-9.2V6l7-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m8.5 12.2 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>@endif
+                                </b></span>
+                                <h3>{{ \App\Support\CollegeBrand::copy($item->name) }}</h3><p>{{ \App\Support\CollegeBrand::copy($item->description) }}</p>
+                            </article>
+                        @endforeach
+                        @if($accreditationItems->isEmpty())
+                            @foreach(preg_split("/\r\n|\n|\r/", trim($accreditationSection->body)) as $item)
+                                @php($parts = array_pad(explode('::', trim($item), 2), 2, ''))
+                                @if($parts[0] !== '')
+                                <article>
+                                    <h3>{{ \App\Support\CollegeBrand::copy($parts[0]) }}</h3><p>{{ \App\Support\CollegeBrand::copy($parts[1]) }}</p>
+                                </article>
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+            </section>
+        @endif
+
         @if($leadershipMessages->isNotEmpty())
             <section id="leadership" class="acps-section acps-leadership">
                 <div class="acps-container">

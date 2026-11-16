@@ -13,6 +13,8 @@ class NursingPageSection extends Model
         'title',
         'body',
         'icon_label',
+        'icon_labels',
+        'icon_paths',
         'image_url',
         'button_label',
         'button_url',
@@ -27,6 +29,8 @@ class NursingPageSection extends Model
         return [
             'sort_order' => 'integer',
             'is_active' => 'boolean',
+            'icon_labels' => 'array',
+            'icon_paths' => 'array',
         ];
     }
 

@@ -77,9 +77,9 @@ class NursingPageSectionController extends Controller
     private function validatedSection(Request $request, ?NursingPageSection $section = null): array
     {
         $sectionType = $request->input('section_type');
-        $sectionTypeRules = ['required', Rule::in(['hero', 'content', 'feature', 'cta'])];
+        $sectionTypeRules = ['required', Rule::in(['hero', 'content', 'feature', 'accreditation', 'cta'])];
 
-        if (in_array($sectionType, ['hero', 'cta'], true)) {
+        if (in_array($sectionType, ['hero', 'accreditation', 'cta'], true)) {
             $sectionTypeRules[] = Rule::unique('nursing_page_sections', 'section_type')
                 ->where(fn ($query) => $query->where('section_type', $sectionType))
                 ->ignore($section);

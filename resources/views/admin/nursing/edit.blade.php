@@ -26,7 +26,7 @@
                 <label>
                     Content Type
                     <select name="section_type" required>
-                        @foreach(['hero' => 'Page hero', 'content' => 'College information', 'feature' => 'Feature card', 'cta' => 'Admissions call to action'] as $type => $label)
+                        @foreach(['hero' => 'Page hero', 'content' => 'College information', 'feature' => 'Feature card', 'accreditation' => 'Accreditation & Recognition', 'cta' => 'Admissions call to action'] as $type => $label)
                             <option value="{{ $type }}" @selected(old('section_type', $section->section_type) === $type)>{{ $label }}</option>
                         @endforeach
                     </select>

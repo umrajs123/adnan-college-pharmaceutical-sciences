@@ -3152,6 +3152,66 @@ body, button, input, textarea, select { font-family: "DM Sans", Inter, system-ui
 .login-card__return { color: var(--admin-leaf); font-size: 12px; font-weight: 700; text-align: center; }
 .login-card__return:hover { color: var(--admin-forest); }
 
+/* Shared ACPS button language across the admin workspace. */
+.admin-main button,
+.admin-main a.admin-create-link,
+.admin-main .admin-form-actions a,
+.admin-main .admin-form-actions button,
+.admin-main .admin-row-actions a,
+.admin-main .admin-row-actions button,
+.admin-main .leadership-admin-list > article > a,
+.admin-main .hero-admin-list > article > a,
+.admin-main .faculty-admin-list > article > a {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .01em;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
+}
+.admin-main button:not(.admin-theme-toggle):not(.admin-sidebar-toggle),
+.admin-main a.admin-create-link,
+.admin-main .admin-form-actions button,
+.admin-main .admin-row-actions a,
+.admin-main .leadership-admin-list > article > a,
+.admin-main .hero-admin-list > article > a,
+.admin-main .faculty-admin-list > article > a {
+    background: var(--admin-forest);
+    color: #fffefa;
+    box-shadow: 0 8px 18px rgba(23, 61, 49, .14);
+}
+.admin-main a.admin-create-link:hover,
+.admin-main .admin-form-actions button:hover,
+.admin-main .admin-row-actions a:hover,
+.admin-main .leadership-admin-list > article > a:hover,
+.admin-main .hero-admin-list > article > a:hover,
+.admin-main .faculty-admin-list > article > a:hover,
+.admin-main button:not(.admin-theme-toggle):not(.admin-sidebar-toggle):hover { transform: translateY(-1px); background: #285742; box-shadow: 0 10px 22px rgba(23, 61, 49, .2); }
+.admin-main .admin-form-actions a { border-color: var(--admin-line); background: #f1f2eb; color: var(--admin-forest); }
+.admin-main .admin-form-actions a:hover { border-color: #c9a363; background: #f7f0df; color: var(--admin-forest-deep); }
+.admin-main .admin-row-actions button { background: #fff1ef; color: #a4473f; box-shadow: none; }
+.admin-main .admin-row-actions button:hover { background: #f9ddd8; color: #843a34; }
+.admin-main button:focus-visible,
+.admin-main a.admin-create-link:focus-visible,
+.admin-main .admin-form-actions a:focus-visible,
+.admin-main .admin-row-actions a:focus-visible { outline: 3px solid rgba(201, 163, 99, .38); outline-offset: 3px; }
+.admin-topbar__actions > a, .admin-topbar__actions > form button { border: 1px solid rgba(201, 163, 99, .32); background: var(--admin-forest); color: #fffefa; box-shadow: 0 8px 18px rgba(23, 61, 49, .14); }
+.admin-topbar__actions > a:hover, .admin-topbar__actions > form button:hover { background: #285742; transform: translateY(-1px); }
+.admin-form-note { grid-column: 1 / -1; border: 1px solid rgba(201, 163, 99, .3); border-radius: 12px; background: #f7f0df; padding: 12px 14px; color: var(--admin-forest); }
+.admin-form-note strong { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.admin-form-note p { margin: 4px 0 0; color: var(--admin-muted); font-size: 12px; line-height: 1.5; }
+.accreditation-admin-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+.accreditation-admin-settings { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; border: 1px solid var(--admin-line); border-radius: 10px; background: #f1f2eb; color: var(--admin-forest); padding: 0 14px; font-size: 12px; font-weight: 800; }
+.accreditation-admin-list { display: grid; gap: 9px; }
+.accreditation-admin-list > article { display: grid; grid-template-columns: 58px minmax(0, 1fr) auto; align-items: center; gap: 14px; border: 1px solid var(--admin-line); border-radius: 13px; background: #fffefa; padding: 11px 13px; }
+.accreditation-admin-list__logo { display: grid; width: 54px; height: 54px; place-items: center; border: 1px solid #e8e2d1; border-radius: 12px; background: #faf8f0; }
+.accreditation-admin-list__logo img { width: 42px; height: 42px; object-fit: contain; }
+.accreditation-admin-list__content h3 { margin: 3px 0 2px; color: var(--admin-forest); font-size: 15px; }
+.accreditation-admin-list__content p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--admin-muted); font-size: 12px; line-height: 1.45; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.accreditation-admin-list .admin-row-actions { flex-wrap: nowrap; }
+@media (max-width: 640px) { .accreditation-admin-actions { width: 100%; } .accreditation-admin-actions > * { flex: 1; } .accreditation-admin-list > article { grid-template-columns: 48px minmax(0, 1fr); } .accreditation-admin-list__logo { width: 46px; height: 46px; } .accreditation-admin-list__logo img { width: 34px; height: 34px; } .accreditation-admin-list .admin-row-actions { grid-column: 1 / -1; justify-content: flex-start; } }
+
 .admin-dark .admin-shell { background: #101b17; }
 .admin-dark .admin-topbar, .admin-dark .admin-status-strip, .admin-dark .admin-content-graph, .admin-dark .admissions-popup-dashboard, .admin-dark .admin-stats article { border-color: #30433a; background: #17251f; color: #e5ebe5; }
 .admin-dark .admin-topbar h1, .admin-dark .admin-status-strip h2, .admin-dark .admin-card-head h2, .admin-dark .admissions-popup-dashboard h2, .admin-dark .admin-stats strong { color: #eef3ec; }
