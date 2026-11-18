@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutSection;
+use App\Models\AccreditationItem;
 use App\Models\AcademicProgram;
 use App\Models\AcademicFacility;
 use App\Models\CampusEvent;
@@ -43,6 +44,8 @@ class DashboardController extends Controller
             'activeAboutCount' => AboutSection::active()->count(),
             'campusLifeCount' => CampusLifeSection::count(),
             'activeCampusLifeCount' => CampusLifeSection::where('is_active', true)->count(),
+            'accreditationCount' => AccreditationItem::count(),
+            'activeAccreditationCount' => AccreditationItem::where('is_active', true)->count(),
         ]);
     }
 }

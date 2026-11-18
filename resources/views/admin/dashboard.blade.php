@@ -16,7 +16,8 @@
             + $activeStudentVoiceCount
             + $activeFacilityCount
             + $activeAboutCount
-            + $activeCampusLifeCount;
+            + $activeCampusLifeCount
+            + $activeAccreditationCount;
 
         $draftTotal = ($heroSlideCount - $activeHeroSlideCount)
             + ($facultyCount - $activeFacultyCount)
@@ -28,7 +29,8 @@
             + ($studentVoiceCount - $activeStudentVoiceCount)
             + ($facilityCount - $activeFacilityCount)
             + ($aboutCount - $activeAboutCount)
-            + ($campusLifeCount - $activeCampusLifeCount);
+            + ($campusLifeCount - $activeCampusLifeCount)
+            + ($accreditationCount - $activeAccreditationCount);
 
         $contentChart = collect([
             ['label' => 'Hero Slides', 'total' => $heroSlideCount, 'active' => $activeHeroSlideCount],
@@ -42,6 +44,7 @@
             ['label' => 'Facilities', 'total' => $facilityCount, 'active' => $activeFacilityCount],
             ['label' => 'About', 'total' => $aboutCount, 'active' => $activeAboutCount],
             ['label' => 'Campus Life', 'total' => $campusLifeCount, 'active' => $activeCampusLifeCount],
+            ['label' => 'Accreditation', 'total' => $accreditationCount, 'active' => $activeAccreditationCount],
         ]);
 
         $maxChartTotal = max(1, $contentChart->max('total'));
