@@ -126,6 +126,11 @@ class SiteSetting extends Model
 
     public function admissionsPopupImageUrl(): ?string
     {
+        // Keep the popup artwork independent from the Nursing page's fallback image.
+        if ($this->admissions_popup_image_path === 'images/nursing-care.jpg') {
+            return asset('images/admissions-medicine.png');
+        }
+
         return $this->admissions_popup_image_path
             ? $this->assetUrl($this->admissions_popup_image_path)
             : null;

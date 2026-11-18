@@ -155,13 +155,19 @@
         <div class="admin-card-head">
             <div>
                 <span class="admin-kicker">Content Analytics</span>
-                <h2>Content Growth Line Graph</h2>
-                <p>Line graph plotted from real module counts in the dashboard: total records and published records.</p>
+                <h2>Publishing momentum</h2>
+                <p>A visual snapshot of every content area, comparing what is published with the full library.</p>
             </div>
             <div class="admin-graph-legend">
                 <span><i></i> Published</span>
                 <span><i></i> Total</span>
             </div>
+        </div>
+
+        <div class="admin-analytics-summary">
+            <div><small>Published now</small><strong>{{ $publishedTotal }}</strong><span>live records</span></div>
+            <div><small>Content library</small><strong>{{ $publishedTotal + $draftTotal }}</strong><span>total records</span></div>
+            <div><small>Visibility rate</small><strong>{{ $publishedTotal + $draftTotal > 0 ? round(($publishedTotal / ($publishedTotal + $draftTotal)) * 100) : 0 }}%</strong><span>published</span></div>
         </div>
 
         <div class="admin-line-chart-wrap">
@@ -208,5 +214,21 @@
                 <span title="{{ $item['label'] }}">{{ \Illuminate\Support\Str::limit($item['label'], 10, '') }}</span>
             @endforeach
         </div>
+    </section>
+
+    <section class="admin-developer-card" aria-labelledby="adminDeveloperTitle">
+        <div class="admin-developer-card__identity">
+            <img class="admin-developer-card__avatar" src="{{ asset('images/adnan-umraj.webp') }}" alt="Adnan K Umraj">
+            <div>
+                <span class="admin-kicker">Website developer</span>
+                <h2 id="adminDeveloperTitle">Adnan K Umraj</h2>
+            </div>
+        </div>
+        <div class="admin-developer-card__links">
+            <a href="mailto:umrajs123@gmail.com"><span class="admin-developer-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></span><small>Email</small><strong>umrajs123@gmail.com</strong></a>
+            <a href="https://wa.me/923433946559" target="_blank" rel="noopener noreferrer"><span class="admin-developer-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"></path><path d="M8.2 8.5c.2-.4.4-.4.7-.4h.5c.2 0 .3.1.4.4l.6 1.4c.1.2.1.4-.1.6l-.5.5c.5 1 1.3 1.7 2.3 2.2l.6-.5c.2-.2.4-.2.6-.1l1.4.6c.3.1.4.3.3.6-.2.7-.7 1.2-1.4 1.3-1.4.1-3.2-.8-4.5-2.1-1.2-1.2-2-2.8-1.9-4.5.1-.3.5-.7 1-1Z"></path></svg></span><small>WhatsApp</small><strong>+92 343 3946559</strong></a>
+            <a href="https://github.com/umrajs123" target="_blank" rel="noopener noreferrer"><span class="admin-developer-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 19c-4 .9-4-2-5-2m10 4v-3.5c0-1 .1-1.4-.5-2 1.8-.2 3.7-.9 3.7-4a3.1 3.1 0 0 0-.8-2.2 2.9 2.9 0 0 0-.1-2.2s-.7-.2-2.3.8a8 8 0 0 0-4.1 0c-1.6-1-2.3-.8-2.3-.8a2.9 2.9 0 0 0-.1 2.2 3.1 3.1 0 0 0-.8 2.2c0 3.1 1.9 3.8 3.7 4-.6.5-.6 1-.5 2V21"></path></svg></span><small>GitHub</small><strong>github.com/umrajs123</strong></a>
+        </div>
+        <p class="admin-developer-card__note">Need an update, improvement, or a new feature? Contact me directly.</p>
     </section>
 @endsection
