@@ -3215,6 +3215,8 @@ body, button, input, textarea, select { font-family: "DM Sans", Inter, system-ui
 .admin-developer-card__links a:nth-child(3) > .admin-developer-card__icon { color: #24292f; }
 .admin-developer-card__links a:hover > .admin-developer-card__icon { background: transparent; }
 .admin-dark .admin-developer-card__links a:nth-child(3) > .admin-developer-card__icon { color: #f0f6fc; }
+.admin-dark .admin-stats span { color: #f1cf86 !important; text-shadow: 0 0 16px rgba(241, 207, 134, .22); }
+.admin-dark .admin-stats article { background: linear-gradient(145deg, #17251f, #1d3028); border-color: rgba(217, 185, 120, .24); }
 @media (max-width: 640px) { .admin-content-line-graph { padding: 16px 12px; } .admin-content-line-graph .admin-graph-legend { flex-wrap: wrap; } .admin-content-line-graph .admin-line-chart-wrap { grid-template-columns: 27px minmax(0, 1fr); gap: 6px; } .admin-content-line-graph .admin-line-chart { min-height: 205px; padding: 8px; } .admin-content-line-graph .admin-line-chart svg { height: 185px; } .admin-content-line-graph .admin-line-chart-labels { margin-left: 33px; } }
 .admin-dark .admin-developer-card { border-color: #30433a; background: linear-gradient(120deg, #17251f, #1d3028); }
 .admin-dark .admin-developer-card h2, .admin-dark .admin-developer-card__links strong { color: #eef3ec; }
