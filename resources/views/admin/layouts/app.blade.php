@@ -256,5 +256,92 @@
             });
         })();
     </script>
+    <script>
+        (() => {
+            const databaseName = 'acps-admin-offline';
+            const storeName = 'pending-submissions';
+            const canQueue = (form) => form.method.toLowerCase() === 'post'
+                && form.enctype !== 'multipart/form-data'
+                && !form.action.includes('/logout')
+                && !form.querySelector('input[name="_method"][value="DELETE" i]')
+                && !form.hasAttribute('data-offline-disabled');
+
+            const openDatabase = () => new Promise((resolve, reject) => {
+                const request = indexedDB.open(databaseName, 1);
+                request.onupgradeneeded = () => request.result.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true });
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+
+            const queueSubmission = async (form) => {
+                const data = Object.fromEntries(new FormData(form).entries());
+                const database = await openDatabase();
+                await new Promise((resolve, reject) => {
+                    const transaction = database.transaction(storeName, 'readwrite');
+                    transaction.objectStore(storeName).add({ action: form.action, data, createdAt: Date.now() });
+                    transaction.oncomplete = resolve;
+                    transaction.onerror = () => reject(transaction.error);
+                });
+            };
+
+            const showOfflineNotice = (message) => {
+                let notice = document.querySelector('[data-offline-sync-notice]');
+                if (!notice) {
+                    notice = document.createElement('div');
+                    notice.dataset.offlineSyncNotice = 'true';
+                    notice.className = 'admin-offline-sync-notice';
+                    document.body.appendChild(notice);
+                }
+                notice.textContent = message;
+                notice.classList.add('is-visible');
+                window.setTimeout(() => notice.classList.remove('is-visible'), 6000);
+            };
+
+            const syncPendingSubmissions = async () => {
+                if (!navigator.onLine) return;
+                let database;
+                try { database = await openDatabase(); } catch { return; }
+                const entries = await new Promise((resolve) => {
+                    const request = database.transaction(storeName, 'readonly').objectStore(storeName).getAll();
+                    request.onsuccess = () => resolve(request.result || []);
+                    request.onerror = () => resolve([]);
+                });
+                for (const entry of entries) {
+                    try {
+                        const response = await fetch(entry.action, {
+                            method: 'POST',
+                            credentials: 'same-origin',
+                            headers: { 'Accept': 'text/html', 'X-Requested-With': 'XMLHttpRequest' },
+                            body: new URLSearchParams(entry.data),
+                        });
+                        if (!response.ok) continue;
+                        await new Promise((resolve) => {
+                            const transaction = database.transaction(storeName, 'readwrite');
+                            transaction.objectStore(storeName).delete(entry.id);
+                            transaction.oncomplete = resolve;
+                            transaction.onerror = resolve;
+                        });
+                    } catch { break; }
+                }
+                if (entries.length) showOfflineNotice('Pending admin changes synced successfully.');
+            };
+
+            document.addEventListener('submit', async (event) => {
+                const form = event.target;
+                if (!canQueue(form) || navigator.onLine) return;
+                event.preventDefault();
+                try {
+                    await queueSubmission(form);
+                    form.reset();
+                    showOfflineNotice('No internet connection. Your changes are saved and will sync automatically.');
+                } catch {
+                    showOfflineNotice('Offline saving is unavailable in this browser. Please keep this page open and retry.');
+                }
+            });
+
+            window.addEventListener('online', syncPendingSubmissions);
+            syncPendingSubmissions();
+        })();
+    </script>
 </body>
 </html>
