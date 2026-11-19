@@ -3,6 +3,11 @@
     $settings = $siteSettings ?? \App\Models\SiteSetting::current();
     $admissionsUrl = $settings->admissions_url ?: '#admissions';
     $contactEmail = $settings->email;
+    $lastUpdatedAt = max(
+        filemtime(resource_path('views/homepage.blade.php')),
+        filemtime(public_path('css/scps.css')),
+        filemtime(public_path('js/scps.js'))
+    );
 @endphp
 
 <footer id="contact" class="acps-footer">
@@ -76,6 +81,7 @@
 
         <div class="acps-footer__bottom">
             <span>&copy; {{ now()->year }} {{ $settings->site_name }}. All rights reserved.</span>
+            <small class="acps-footer__updated">Website was last updated on {{ \Carbon\Carbon::createFromTimestamp($lastUpdatedAt, config('app.timezone'))->format('h:i A') }} time, and {{ \Carbon\Carbon::createFromTimestamp($lastUpdatedAt, config('app.timezone'))->format('d.m.y') }} date.</small>
             <a class="developer-contact-trigger acps-footer__credit" href="#developerContactModal" aria-haspopup="dialog" aria-controls="developerContactModal">
                 <span class="acps-footer__credit-label">Website by</span>
                 <strong>Adnan K Umraj</strong>
