@@ -1,7 +1,7 @@
 @php
     $homeUrl = url('/');
     $settings = $siteSettings ?? \App\Models\SiteSetting::current();
-    $admissionsUrl = $settings->admissions_url ?: '#admissions';
+    $admissionsUrl = route('admissions.create');
     $isHome = request()->is('/');
     $isNursing = request()->routeIs('nursing.*');
 @endphp

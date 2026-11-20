@@ -1,0 +1,54 @@
+﻿/* Compact college chat. */
+.college-assistant{--ink:#193b32;--green:#11634e;position:fixed;right:24px;bottom:82px;z-index:1000;font:16px/1.5 Inter,Arial,sans-serif;color:var(--ink)}
+.college-assistant *{box-sizing:border-box}
+.college-assistant [hidden]{display:none!important}
+.college-assistant button,.college-assistant select,.college-assistant textarea{font:inherit}
+.college-assistant button{cursor:pointer;transition:background .15s}
+.college-assistant button:disabled{opacity:.5;cursor:not-allowed}
+.college-assistant :focus-visible{outline:2px solid #218f73;outline-offset:3px}
+.college-assistant__launcher{display:flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid #165b48;border-radius:12px;background:var(--green);color:white;box-shadow:0 4px 16px #163c3220;font-size:14px!important;font-weight:600!important}
+.college-assistant__launcher:hover{background:#0b4d3b}
+.college-assistant__mark{display:grid;place-items:center;width:36px;height:36px;flex-shrink:0;border:1px solid #ffffff26;border-radius:10px;background:#ffffff10;color:#e4f7ec}
+.college-assistant__launcher{padding:7px 12px 7px 7px;gap:10px}
+.college-assistant__launcher small{font-size:11px;line-height:1.5;border:1px solid #ffffff30;border-radius:5px;padding:2px 5px;letter-spacing:.04em;color:#e4f7ec}
+.college-assistant__panel{position:fixed;right:24px;bottom:24px;width:min(460px,calc(100vw - 48px));height:min(660px,calc(100dvh - 48px));display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid #d9e3df;border-radius:16px;box-shadow:0 16px 50px #14372d26}
+.college-assistant__header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;background:#fff;border-bottom:1px solid #edf1ef;flex-shrink:0}
+.college-assistant__header strong{display:block;font-size:17px;font-weight:700;letter-spacing:-.025em;color:#173e31}
+.college-assistant__header span{display:block;margin-top:2px;font-size:13px;color:#687b73}
+.college-assistant__header button{display:grid;place-items:center;width:32px;height:32px;padding:0;background:transparent;border:0;border-radius:8px;color:#64786e;font-size:25px;line-height:1}
+.college-assistant__header button:hover{background:#f0f5f2;color:#183f32}
+.college-assistant__tools{display:flex;align-items:center;gap:8px;padding:8px 18px;flex-shrink:0;font-size:14px;background:#fff}
+.college-assistant__tools label{color:#6a7b73}
+.college-assistant__tools select{appearance:none;padding:5px 27px 5px 9px;border:1px solid #e0e8e3;border-radius:6px;background:#fff;color:#284c3e;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23465f52' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.college-assistant__tools button{margin-inline-start:auto;border:0;background:none;color:#536d60;padding:6px;border-radius:6px;font-size:14px}
+.college-assistant__tools button:hover{background:#eff5f1}
+.college-assistant .college-assistant__privacy{flex-shrink:0;padding:0 18px 12px;margin:0;font-size:12px;line-height:1.5;color:#77867d;background:#fff;border-bottom:1px solid #edf1ef}
+.college-assistant__messages{flex:1;min-height:0;overflow-y:auto;padding:18px;background:#f8faf9;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#d3dfd7 transparent}
+.college-assistant__bubble{width:fit-content;max-width:93%;margin:0 0 14px;padding:11px 13px;background:#fff;border:1px solid #e5ece7;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;color:#284337;font-size:16px;line-height:1.6}
+.college-assistant__bubble--user{margin-inline-start:auto;background:#eaf3ee;border-color:#e0ece4;color:#244c39}
+.college-assistant__bubble a{display:inline-block;margin:8px 8px 0 0;padding:0;color:#177252;text-decoration:underline;text-underline-offset:3px;font-size:13px}
+.college-assistant__bubble a:hover{color:#0b4533}
+.college-assistant__starters{display:flex;flex-wrap:wrap;gap:6px;padding:0 18px 14px;background:#f8faf9;flex-shrink:0}
+.college-assistant__starters button{padding:6px 9px;border:1px solid #dce7df;border-radius:7px;background:#fff;color:#426250;font-size:14px}
+.college-assistant__starters button:hover{background:#eaf3ed;border-color:#b5d1c0}
+.college-assistant__draft{flex-shrink:0;max-height:150px;overflow:auto;padding:12px 18px;background:#f2f8f4;border-top:1px solid #e2ede5;font-size:14px}
+.college-assistant__draft strong{font-weight:600}
+.college-assistant__draft dl{display:grid;grid-template-columns:minmax(90px,1fr) 2fr;gap:4px 10px;margin:8px 0}
+.college-assistant__draft dt{color:#62786a}.college-assistant__draft dd{margin:0;overflow-wrap:anywhere}
+.college-assistant__draft button{border:0;border-radius:6px;background:var(--green);color:#fff;padding:8px 12px}
+.college-assistant__draft a{color:#16654a;text-decoration:underline}
+.college-assistant__draft p{margin:7px 0 0;font-size:12px;line-height:1.5;color:#687b6f}
+.college-assistant .college-assistant__status{flex-shrink:0;margin:0;background:#f8faf9;font-size:14px;line-height:1.5;color:#a03c3c}
+.college-assistant__status:not(:empty){padding:8px 18px}
+.college-assistant.is-busy .college-assistant__status{color:#39735a}
+.college-assistant.is-busy .college-assistant__status::before{content:'';display:inline-block;width:10px;height:10px;border:2px solid #d5e6dc;border-top-color:#227252;border-radius:50%;margin-inline-end:8px;animation:chat-spin .8s linear infinite}
+.college-assistant__composer{display:flex;align-items:flex-end;gap:8px;padding:12px;background:#fff;border-top:1px solid #e8eeea;flex-shrink:0}
+.college-assistant__composer textarea{flex:1;min-width:0;min-height:44px;max-height:112px;padding:10px 12px;resize:none;overflow-y:auto;border:1px solid #dce5df;border-radius:8px;background:#fff;color:#213d2e;font-size:16px;line-height:22px}
+.college-assistant__composer textarea::placeholder{color:#849187;font-size:14px}
+.college-assistant__composer button{height:44px;padding:0 14px;border:0;border-radius:8px;background:var(--green);color:white;font-size:14px;font-weight:600}
+.college-assistant__composer button:hover{background:#0c4f3c}
+.college-assistant__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes chat-spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){.college-assistant{right:16px;bottom:76px}.college-assistant__panel{right:10px;bottom:10px;width:calc(100vw - 20px);height:min(700px,calc(100dvh - 20px));border-radius:13px}.college-assistant__draft{max-height:130px}}
+@media(max-height:550px){.college-assistant__panel{bottom:8px;right:8px;height:calc(100dvh - 16px)}.college-assistant__header{padding:9px 14px}.college-assistant__header span{display:none}.college-assistant .college-assistant__privacy{padding-bottom:6px}.college-assistant__draft{max-height:90px}.college-assistant__tools{padding:5px 14px}}
+@media(prefers-reduced-motion:reduce){.college-assistant *{animation:none!important;transition:none!important}}

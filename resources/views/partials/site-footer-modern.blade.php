@@ -123,3 +123,4 @@
 <button class="back-to-top acps-back-to-top" type="button" aria-label="Back to top">&uarr;</button>
 
 <script src="{{ asset('js/scps.js') }}?v={{ filemtime(public_path('js/scps.js')) }}"></script>
+@include('partials.college-assistant')

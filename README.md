@@ -53,6 +53,24 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## College AI assistant
+
+The public footer includes an English/Urdu assistant. The admission form stays in English. It uses active college/program/about content, shows supporting page links, and suggests application fields for users to review. It cannot submit applications, retrieve private records or check application status. On `/apply`, **Fill empty form fields** copies suggestions without overwriting existing entries or checking the confirmation box.
+
+To enable replies, set these server-only values in `.env` (never commit the key):
+
+```dotenv
+GROQ_API_KEY=your-api-key
+GROQ_MODEL=openai/gpt-oss-20b
+AI_DAILY_LIMIT=200
+```
+
+Run `php artisan config:clear` after changing configuration. Create a free Groq account and generate a key at https://console.groq.com/keys. Keep the account on the Free plan without upgrading or enabling paid billing. See [Groq billing](https://console.groq.com/docs/billing-faqs), [rate limits](https://console.groq.com/docs/rate-limits) and [structured outputs](https://console.groq.com/docs/structured-outputs). No additional PHP package is required. The model runs on Groq's servers; the Laravel website still needs its usual web hosting for public access. The `openai/` prefix in this model's name identifies its author; requests go to Groq, not the paid OpenAI API. Legacy `OPENAI_API_KEY` settings are ignored.
+
+Without a key, the widget clearly reports that AI is not connected and the normal admission form remains available. Messages are sent to Groq; the application does not save chat history. Review [Groq data controls](https://console.groq.com/docs/your-data) and enable Zero Data Retention in the Groq account if appropriate. The browser keeps only a short conversation in memory until refresh/clear. Public content accompanies each request, but saved applications and user accounts are never included. Review college content before enabling replies: missing fees, deadlines and policies cannot be answered reliably. The assistant is instructed to refer unknown questions to staff.
+
+The endpoint uses CSRF protection, eight requests per minute per IP, and a shared daily limit (default 200) backed by Laravel's configured cache. Groq also applies token and request limits, which may be reached sooner. When quota is exhausted, replies pause; there is no paid fallback. Free-tier availability and limits can change. Run `php artisan test --filter=CollegeAssistantTest` for mocked provider, validation, privacy, error and rate-limit checks. A live English/Urdu reply requires a configured Groq key and must be verified separately.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

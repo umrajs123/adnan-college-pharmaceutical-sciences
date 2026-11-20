@@ -21,6 +21,7 @@
 <body class="admin-shell">
     @php
         $adminSearchItems = [
+            ['label' => 'Applications', 'hint' => 'Review admission applications', 'url' => route('admin.applications.index'), 'code' => 'AA'],
             ['label' => 'Dashboard', 'hint' => 'Website overview and content health', 'url' => route('admin.dashboard'), 'code' => 'DB'],
             ['label' => 'Leadership Messages', 'hint' => 'Director and Principal messages', 'url' => route('admin.leadership.index'), 'code' => 'LM'],
             ['label' => 'Hero Slides', 'hint' => 'Homepage slider headings, buttons, and images', 'url' => route('admin.hero-slides.index'), 'code' => 'HS'],
@@ -58,6 +59,7 @@
         </div>
 
         <nav class="admin-nav" aria-label="Admin navigation">
+            <a class="{{ request()->routeIs('admin.applications.*') ? 'active' : '' }}" href="{{ route('admin.applications.index') }}"><span>AA</span>Applications</a>
             <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                 <span>01</span>
                 Dashboard

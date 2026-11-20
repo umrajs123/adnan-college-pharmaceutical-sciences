@@ -35,6 +35,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', HomeController::class)->name('home');
+Route::get('/apply', [\App\Http\Controllers\AdmissionApplicationController::class, 'create'])->name('admissions.create');
+Route::post('/assistant', \App\Http\Controllers\CollegeAssistantController::class)->middleware('throttle:college-assistant')->name('assistant.chat');
+Route::post('/apply', [\App\Http\Controllers\AdmissionApplicationController::class, 'store'])->middleware('throttle:5,1')->name('admissions.store');
 Route::get('/about', AboutController::class)->name('about.show');
 Route::get('/search', SearchController::class)->name('search.index');
 Route::get('/programs/{slug}', [ProgramController::class, 'show'])->name('programs.show');
@@ -61,6 +64,7 @@ Route::post('/admin/login', [AuthController::class, 'login'])->middleware('guest
 | The route order below follows the sidebar order in the admin dashboard.
 */
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/applications', [\App\Http\Controllers\AdmissionApplicationController::class, 'index'])->name('applications.index');
     // 01. Dashboard: admin overview and content summary.
     Route::get('/', DashboardController::class)->name('dashboard');
 

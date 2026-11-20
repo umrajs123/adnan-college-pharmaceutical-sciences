@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Support\Facades\RateLimiter::for('college-assistant', fn ($request) => [
+            \Illuminate\Cache\RateLimiting\Limit::perMinute(8)->by('assistant:'.$request->ip()),
+            \Illuminate\Cache\RateLimiting\Limit::perDay(max(1, config('assistant.daily_limit')))->by('assistant:global'),
+        ]);
+
         View::composer('*', function ($view) {
             $request = request();
             $settings = $request->attributes->get('site_settings');
